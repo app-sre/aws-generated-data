@@ -71,7 +71,8 @@ def parse_date(date_str: str) -> datetime:
 def parse_aws_release_calendar(page: str) -> list[CalItem]:
     items: list[CalItem] = []
     soup = BeautifulSoup(page, "html5lib")
-    version_table = soup.find_all("table")[0]
+    # the first table is the one we want
+    version_table = soup.find("table")
     for row in version_table.find_all("tr"):
         cols = row.find_all("td")
         if len(cols) == 4:
