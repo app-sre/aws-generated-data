@@ -236,7 +236,6 @@ def test_cli_rds_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
     )
     write_output_file_mock.assert_called_once_with(
         output_file,
-        # this doesn't compare the eol dates, only the engines and versions!
         [
             RdsItem(engine="postgres", version="12.2", eol=date(2024, 1, 1)),
             RdsItem(engine="postgres", version="11.1", eol=date(2024, 1, 1)),
@@ -250,7 +249,3 @@ def test_cli_rds_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
             RdsItem(engine="manual-added", version="1.2.4", eol=date(2024, 1, 1)),
         ],
     )
-    # test that postgres:11.1 was overwritten
-    assert write_output_file_mock.call_args.args[1][1].engine == "postgres"
-    assert write_output_file_mock.call_args.args[1][1].version == "11.1"
-    assert write_output_file_mock.call_args.args[1][1].eol == date(2024, 1, 1)

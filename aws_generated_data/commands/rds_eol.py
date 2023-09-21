@@ -33,11 +33,6 @@ class RdsItem(BaseModel):
             return False
         return (self.engine, self.version) < (other.engine, other.version)
 
-    def __eq__(self, other: Any) -> bool:
-        if not isinstance(other, RdsItem):
-            return False
-        return (self.engine, self.version) == (other.engine, other.version)
-
 
 RdsEol = RootModel[list[RdsItem]]
 CalItem = tuple[str, datetime]
@@ -141,18 +136,16 @@ def fetch(
     ] = 365,
 ) -> None:
     """Fetch RDS EOL data from AWS and saves it to a file."""
-    rds_items = read_output_file(output)
+    rds_items_dict = {
+        (item.engine, item.version): item for item in read_output_file(output)
+    }
     for engine in engines:
         log.info(f"Processing {engine} ...")
         for item in get_rds_eol_data(engine):
-            if item in rds_items:
-                # update the EOL date
-                rds_items[rds_items.index(item)].eol = item.eol
-                continue
-            rds_items.append(item)
+            rds_items_dict[(item.engine, item.version)] = item
 
     rds_items = filter_rds_items(
-        rds_items,
+        rds_items_dict.values(),
         expired_date=date.today() - timedelta(days=clean_up_days),
     )
     write_output_file(output, sorted(rds_items, reverse=True))
