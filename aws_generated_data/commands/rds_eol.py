@@ -28,13 +28,15 @@ class RdsItem(BaseModel):
     version: str
     eol: date
 
-    def __hash__(self) -> int:
-        return hash((self.engine, self.version))
-
     def __lt__(self, other: Any) -> bool:
         if not isinstance(other, RdsItem):
             return False
         return (self.engine, self.version) < (other.engine, other.version)
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, RdsItem):
+            return False
+        return (self.engine, self.version) == (other.engine, other.version)
 
 
 RdsEol = RootModel[list[RdsItem]]
@@ -142,10 +144,15 @@ def fetch(
     rds_items = read_output_file(output)
     for engine in engines:
         log.info(f"Processing {engine} ...")
-        rds_items += get_rds_eol_data(engine)
+        for item in get_rds_eol_data(engine):
+            if item in rds_items:
+                # update the EOL date
+                rds_items[rds_items.index(item)].eol = item.eol
+                continue
+            rds_items.append(item)
 
     rds_items = filter_rds_items(
         rds_items,
         expired_date=date.today() - timedelta(days=clean_up_days),
     )
-    write_output_file(output, sorted(set(rds_items), reverse=True))
+    write_output_file(output, sorted(rds_items, reverse=True))
