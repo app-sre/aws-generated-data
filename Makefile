@@ -21,6 +21,10 @@ test:
 .PHONY: test
 
 ci-run: build-test-image
+	# Allow docker to write to output directory
+	chmod a+w output/*
+
+	# Run agd rds-eol
 	docker run --rm \
 		-v '$(PWD)/output':/output \
 		-e AGD_RDS_EOL_ENGINES='$(AGD_RDS_EOL_ENGINES)' \
