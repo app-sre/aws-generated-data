@@ -9,7 +9,7 @@ build-test-image:
 	docker build -t agd-test .
 
 pr-check: build-test-image
-	docker run --rm -it agd-test make test
+	docker run --rm agd-test make test
 .PHONY: pr-check
 
 test:
@@ -25,7 +25,7 @@ ci-run: build-test-image
 		-v $(PWD)/output:/output \
 		-e AGD_RDS_EOL_ENGINES='$(AGD_RDS_EOL_ENGINES)' \
 		-e AGD_RDS_EOL_OUTPUT=/output/rds_eol.yaml \
-		-it agd-test make run
+		agd-test make run
 
 	# Commit changes if any
 	@status=$$(git status --porcelain --untracked-files=no); \
