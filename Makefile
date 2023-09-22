@@ -36,8 +36,8 @@ ci-run: build-test-image
 	@status=$$(git status --porcelain --untracked-files=no); \
 	if [ ! -z "$${status}" ]; \
 	then \
-		echo git add output/*; \
-		echo git commit -m "Update data"; \
+		git add output/*; \
+		git commit -m "Update data"; \
 	fi
 .PHONY: ci-run
 
