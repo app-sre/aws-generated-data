@@ -22,7 +22,7 @@ test:
 
 ci-run: build-test-image
 	docker run --rm \
-		-v $(PWD)/output:/output \
+		-v '$(PWD)/output':/output \
 		-e AGD_RDS_EOL_ENGINES='$(AGD_RDS_EOL_ENGINES)' \
 		-e AGD_RDS_EOL_OUTPUT=/output/rds_eol.yaml \
 		agd-test make run
