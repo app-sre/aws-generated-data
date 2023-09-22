@@ -1,8 +1,9 @@
 DIRS := aws_generated_data
+POETRY_RUN := poetry run --no-ansi --no-interaction
 
 format:
-	poetry run black $(DIRS)
-	poetry run isort $(DIRS)
+	$(POETRY_RUN) black $(DIRS)
+	$(POETRY_RUN) isort $(DIRS)
 .PHONY: format
 
 build-test-image:
@@ -13,11 +14,11 @@ pr-check: build-test-image
 .PHONY: pr-check
 
 test:
-	poetry run pytest -vv
-	poetry run flake8 $(DIRS)
-	poetry run mypy $(DIRS)
-	poetry run black --check $(DIRS)
-	poetry run isort --check-only $(DIRS)
+	$(POETRY_RUN) pytest -vv
+	$(POETRY_RUN) flake8 $(DIRS)
+	$(POETRY_RUN) mypy $(DIRS)
+	$(POETRY_RUN) black --check $(DIRS)
+	$(POETRY_RUN) isort --check-only $(DIRS)
 .PHONY: test
 
 ci-run: build-test-image
@@ -44,4 +45,4 @@ ci-run: build-test-image
 run: run-rds-eol
 
 run-rds-eol:
-	poetry run agd rds-eol fetch
+	$(POETRY_RUN) agd rds-eol fetch
