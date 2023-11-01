@@ -111,20 +111,20 @@
   eol: 2024-02-01
   version: 5.7.43
 - engine: mysql
-  eol: 2023-12-01
+  eol: 2024-01-16
   version: 5.7.42
 - engine: mysql
-  eol: 2023-12-01
+  eol: 2024-01-16
   version: 5.7.41
 - engine: mysql
-  eol: 2023-12-01
+  eol: 2024-01-16
   version: 5.7.40
 - engine: mysql
-  eol: 2023-12-01
+  eol: 2024-01-16
   version: 5.7.39
 - engine: mysql
-  eol: 2023-12-01
+  eol: 2024-01-16
   version: 5.7.38
 - engine: mysql
-  eol: 2023-12-01
+  eol: 2024-01-16
   version: 5.7.37
