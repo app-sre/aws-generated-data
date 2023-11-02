@@ -105,10 +105,10 @@
   eol: 2024-03-01
   version: 8.0.28
 - engine: mysql
-  eol: 2024-02-01
+  eol: 2024-02-29
   version: 5.7.44*
 - engine: mysql
-  eol: 2024-02-01
+  eol: 2024-02-29
   version: 5.7.43
 - engine: mysql
   eol: 2024-01-16
