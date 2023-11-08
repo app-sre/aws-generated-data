@@ -29,7 +29,6 @@ class RdsItem(BaseModel):
     eol: date
 
     def __init__(self, **data: Any):
-    # Clean the version by removing any trailing asterisks
         if 'version' in data:
             data['version'] = data['version'].rstrip('*')
         super().__init__(**data)
