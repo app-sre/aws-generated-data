@@ -100,6 +100,19 @@ def test_get_rds_eol_data(
     ]
     m.assert_called_once_with("data")
 
+def test_get_rds_eol_data_with_asterisk(
+    mocker: MockerFixture, requests_mock: requests_mock.Mocker
+) -> None:
+    m = mocker.patch(
+        "aws_generated_data.commands.rds_eol.parse_aws_release_calendar",
+        autospec=True,
+        return_value=[("1.2.3*", dt(2021, 1, 1))],
+    )
+    requests_mock.get("https://example.com", text="data")
+    assert get_rds_eol_data(Engine("mysql:https://example.com")) == [
+        RdsItem(engine="mysql", version="1.2.3", eol=date(2021, 1, 1))
+    ]
+    m.assert_called_once_with("data")
 
 @pytest.mark.parametrize(
     "date_str, expected",
