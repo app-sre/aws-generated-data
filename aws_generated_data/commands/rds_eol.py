@@ -29,8 +29,8 @@ class RdsItem(BaseModel):
     eol: date
 
     def __init__(self, **data: Any):
-        if 'version' in data:
-            data['version'] = data['version'].rstrip('*')
+        if "version" in data:
+            data["version"] = data["version"].rstrip("*")
         super().__init__(**data)
 
     def __lt__(self, other: Any) -> bool:
