@@ -67,7 +67,7 @@
   version: '12.11'
 - engine: postgres
   eol: 2024-02-01
-  version: 11.22*
+  version: '11.22'
 - engine: postgres
   eol: 2024-02-01
   version: '11.21'
@@ -106,7 +106,7 @@
   version: 8.0.28
 - engine: mysql
   eol: 2024-02-29
-  version: 5.7.44*
+  version: 5.7.44
 - engine: mysql
   eol: 2024-02-29
   version: 5.7.43
