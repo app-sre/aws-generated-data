@@ -60,7 +60,7 @@
   eol: 2024-03-01
   version: '13.10'
 - engine: postgres
-  eol: 2025-03-01
+  eol: 2025-02-28
   version: '12.17'
 - engine: postgres
   eol: 2024-09-01
@@ -81,10 +81,10 @@
   eol: 2024-03-01
   version: '12.11'
 - engine: postgres
-  eol: 2024-02-01
+  eol: 2024-02-29
   version: '11.22'
 - engine: postgres
-  eol: 2024-02-01
+  eol: 2024-02-29
   version: '11.21'
 - engine: postgres
   eol: 2024-01-16
