@@ -103,6 +103,9 @@
   version: '11.16'
 - engine: mysql
   eol: 2025-03-01
+  version: 8.0.36
+- engine: mysql
+  eol: 2025-03-01
   version: 8.0.35
 - engine: mysql
   eol: 2024-09-01
