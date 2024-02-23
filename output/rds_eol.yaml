@@ -1,7 +1,13 @@
 ---
 - engine: postgres
+  eol: 2025-06-01
+  version: '16.2'
+- engine: postgres
   eol: 2025-03-01
   version: '16.1'
+- engine: postgres
+  eol: 2025-06-01
+  version: '15.6'
 - engine: postgres
   eol: 2025-03-01
   version: '15.5'
@@ -36,6 +42,9 @@
   eol: 2024-03-01
   version: '14.3'
 - engine: postgres
+  eol: 2025-06-01
+  version: '14.11'
+- engine: postgres
   eol: 2025-03-01
   version: '14.10'
 - engine: postgres
@@ -48,6 +57,9 @@
   eol: 2024-03-01
   version: '13.7'
 - engine: postgres
+  eol: 2025-06-01
+  version: '13.14'
+- engine: postgres
   eol: 2025-03-01
   version: '13.13'
 - engine: postgres
@@ -59,6 +71,9 @@
 - engine: postgres
   eol: 2024-03-01
   version: '13.10'
+- engine: postgres
+  eol: 2025-06-01
+  version: '12.18'
 - engine: postgres
   eol: 2025-02-28
   version: '12.17'
