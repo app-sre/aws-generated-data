@@ -1,3 +1,4 @@
+import calendar
 import logging
 from collections.abc import Iterable
 from datetime import (
@@ -65,7 +66,10 @@ def engine_with_url(value: str) -> Engine:
 
 def parse_date(date_str: str) -> datetime:
     try:
-        return datetime.strptime(date_str, "%B %Y")
+        d = datetime.strptime(date_str, "%B %Y")
+        # a date like "March 2022" means actually "March 31, 2022"
+        last_day_of_month = calendar.monthrange(d.year, d.month)[1]
+        return d.replace(day=last_day_of_month)
     except ValueError:
         return datetime.strptime(date_str, "%d %B %Y")
 
