@@ -132,13 +132,13 @@
   eol: 2024-09-30
   version: 8.0.32
 - engine: mysql
-  eol: 2024-03-31
+  eol: 2024-03-29
   version: 8.0.31
 - engine: mysql
-  eol: 2023-09-30
+  eol: 2024-09-30
   version: 8.0.30
 - engine: mysql
-  eol: 2024-03-31
+  eol: 2024-03-29
   version: 8.0.28
 - engine: mysql
   eol: 2024-02-29
