@@ -3,10 +3,11 @@ import logging
 import typer
 from rich.logging import RichHandler
 
-from .commands import rds_eol
+from .commands import msk_eol, rds_eol
 
 app = typer.Typer()
 app.add_typer(rds_eol.app, name="rds-eol", help="RDS End of Life related commands.")
+app.add_typer(msk_eol.app, name="msk-eol", help="MSK End of Life related commands.")
 
 
 @app.callback(no_args_is_help=True)

@@ -12,6 +12,7 @@ from pydantic import RootModel, ValidationError
 MONTH_YEAR = re.compile(r"\w+ \d+")
 DAY_MONTH_YEAR = re.compile(r"\d+ \w+ \d+")
 MONTH_DAY_YEAR = re.compile(r"\w+ \d+, \d+")
+ISO = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 log = logging.getLogger(__name__)
 
@@ -34,6 +35,8 @@ def parse_date(date_str: str) -> datetime:
         return datetime.strptime(date_str, "%d %B %Y")
     if MONTH_DAY_YEAR.fullmatch(date_str):
         return datetime.strptime(date_str, "%B %d, %Y")
+    if ISO.fullmatch(date_str):
+        return datetime.strptime(date_str, "%Y-%m-%d")
     raise ValueError(f"Unknown date format: {date_str}")
 
 

@@ -46,3 +46,6 @@ run: run-rds-eol
 
 run-rds-eol:
 	$(POETRY_RUN) agd rds-eol fetch
+
+run-mks-eol:
+	$(POETRY_RUN) agd mks-eol fetch
