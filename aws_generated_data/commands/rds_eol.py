@@ -1,7 +1,4 @@
-import calendar
 import logging
-import re
-from collections.abc import Iterable
 from datetime import (
     date,
     datetime,
@@ -12,14 +9,16 @@ from typing import Any
 
 import requests
 import typer
-import yaml
 from bs4 import BeautifulSoup
-from pydantic import (
-    BaseModel,
-    RootModel,
-    ValidationError,
-)
+from pydantic import BaseModel, field_validator
 from typing_extensions import Annotated
+
+from aws_generated_data.utils import (
+    filter_items,
+    parse_date,
+    read_output_file,
+    write_output_file,
+)
 
 app = typer.Typer()
 log = logging.getLogger(__name__)
@@ -30,10 +29,9 @@ class RdsItem(BaseModel):
     version: str
     eol: date
 
-    def __init__(self, **data: Any):
-        if "version" in data:
-            data["version"] = data["version"].rstrip("*")
-        super().__init__(**data)
+    @field_validator("version", mode="before")
+    def version_remove_asterisk(cls, value: str) -> str:
+        return value.rstrip("*")
 
     def __lt__(self, other: Any) -> bool:
         if not isinstance(other, RdsItem):
@@ -41,7 +39,6 @@ class RdsItem(BaseModel):
         return (self.engine, self.version) < (other.engine, other.version)
 
 
-RdsEol = RootModel[list[RdsItem]]
 CalItem = tuple[str, datetime]
 
 
@@ -63,24 +60,6 @@ class Engine:
 
 def engine_with_url(value: str) -> Engine:
     return Engine(value)
-
-
-MONTH_YEAR = re.compile(r"\w+ \d+")
-DAY_MONTH_YEAR = re.compile(r"\d+ \w+ \d+")
-MONTH_DAY_YEAR = re.compile(r"\w+ \d+, \d+")
-
-
-def parse_date(date_str: str) -> datetime:
-    if MONTH_YEAR.fullmatch(date_str):
-        d = datetime.strptime(date_str, "%B %Y")
-        # a date like "March 2022" means actually "March 31, 2022"
-        last_day_of_month = calendar.monthrange(d.year, d.month)[1]
-        return d.replace(day=last_day_of_month)
-    if DAY_MONTH_YEAR.fullmatch(date_str):
-        return datetime.strptime(date_str, "%d %B %Y")
-    if MONTH_DAY_YEAR.fullmatch(date_str):
-        return datetime.strptime(date_str, "%B %d, %Y")
-    raise ValueError(f"Unknown date format: {date_str}")
 
 
 def parse_aws_release_calendar(page: str) -> list[CalItem]:
@@ -105,30 +84,6 @@ def get_rds_eol_data(engine: Engine) -> list[RdsItem]:
         RdsItem(engine=engine.name, version=version, eol=d.date())
         for version, d in parse_aws_release_calendar(version_page.text)
     ]
-
-
-def read_output_file(output: Path) -> list[RdsItem]:
-    try:
-        return [RdsItem(**item) for item in yaml.safe_load(output.read_text())]
-    except (TypeError, FileNotFoundError, ValidationError):
-        log.warning(f"Failed to load {output}")
-        return []
-
-
-def write_output_file(output: Path, rds_items: list[RdsItem]) -> None:
-    log.info(f"Saving to {output} ...")
-    output.write_text(
-        yaml.dump(
-            RdsEol(rds_items).model_dump(),
-            explicit_start=True,
-            indent=2,
-            default_flow_style=False,
-        )
-    )
-
-
-def filter_rds_items(rds_items: Iterable[RdsItem], expired_date: date) -> list[RdsItem]:
-    return [item for item in rds_items if item.eol > expired_date]
 
 
 @app.command()
@@ -158,14 +113,14 @@ def fetch(
 ) -> None:
     """Fetch RDS EOL data from AWS and saves it to a file."""
     rds_items_dict = {
-        (item.engine, item.version): item for item in read_output_file(output)
+        (item.engine, item.version): item for item in read_output_file(output, RdsItem)
     }
     for engine in engines:
         log.info(f"Processing {engine} ...")
         for item in get_rds_eol_data(engine):
             rds_items_dict[(item.engine, item.version)] = item
 
-    rds_items = filter_rds_items(
+    rds_items = filter_items(
         rds_items_dict.values(),
         expired_date=date.today() - timedelta(days=clean_up_days),
     )
