@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>MySQL on Amazon RDS versions - Amazon Relational Database Service</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="MySQL.Concepts.VersionMgmt" /><meta name="default_state" content="MySQL.Concepts.VersionMgmt" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="description" content="Learn about Amazon RDS for MySQL versions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Relational Database Service" /><meta name="guide" content="User Guide" /><meta name="abstract" content="Amazon Web Services (AWS) documentation to help you set up, operate, and scale a relational database in the AWS Cloud using Amazon Relational Database Service (Amazon RDS). You can create DB instances that run Amazon Aurora, MariaDB, Microsoft SQL Server, MySQL, Oracle, and PostgreSQL." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="x-default" /><meta name="feedback-item" content="RDS" /><meta name="this_doc_product" content="Amazon Relational Database Service" /><meta name="this_doc_guide" content="User Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'rds'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="MySQL on Amazon RDS versions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>MySQL on Amazon RDS versions - Amazon Relational Database Service</title><meta name="pdf" content="/pdfs/AmazonRDS/latest/UserGuide/rds-ug.pdf#MySQL.Concepts.VersionMgmt" /><meta name="rss" content="rdsupdates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=60" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=RDS&amp;topic_url=http://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=http://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="keywords" content="Amazon Relational Database Service,RDS,DB Instance" /><script type="application/ld+json">
+    <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>MySQL on Amazon RDS versions - Amazon Relational Database Service</title><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="assets_root" content="/assets" /><meta name="target_state" content="MySQL.Concepts.VersionMgmt" /><meta name="default_state" content="MySQL.Concepts.VersionMgmt" /><link rel="icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="description" content="Learn about Amazon RDS for MySQL versions." /><meta name="deployment_region" content="IAD" /><meta name="product" content="Amazon Relational Database Service" /><meta name="guide" content="User Guide" /><meta name="abstract" content="Amazon Web Services (AWS) documentation to help you set up, operate, and scale a relational database in the AWS Cloud using Amazon Relational Database Service (Amazon RDS). You can create DB instances that run Amazon Aurora, MariaDB, Microsoft SQL Server, MySQL, Oracle, and PostgreSQL." /><meta name="guide-locale" content="en_us" /><meta name="tocs" content="toc-contents.json" /><link rel="canonical" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="id-id" /><link rel="alternative" href="https://docs.aws.amazon.com/id_id/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="id" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="de-de" /><link rel="alternative" href="https://docs.aws.amazon.com/de_de/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="de" /><link rel="alternative" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="en-us" /><link rel="alternative" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="en" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="es-es" /><link rel="alternative" href="https://docs.aws.amazon.com/es_es/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="es" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="fr-fr" /><link rel="alternative" href="https://docs.aws.amazon.com/fr_fr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="fr" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="it-it" /><link rel="alternative" href="https://docs.aws.amazon.com/it_it/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="it" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ja-jp" /><link rel="alternative" href="https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ja" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ko-kr" /><link rel="alternative" href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="ko" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="pt-br" /><link rel="alternative" href="https://docs.aws.amazon.com/pt_br/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="pt" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_cn/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="zh-cn" /><link rel="alternative" href="https://docs.aws.amazon.com/zh_tw/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="zh-tw" /><link rel="alternative" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" hreflang="x-default" /><meta name="feedback-item" content="RDS" /><meta name="this_doc_product" content="Amazon Relational Database Service" /><meta name="this_doc_guide" content="User Guide" /><script defer="" src="/assets/r/vendor4.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor3.js?version=2021.12.02"></script><script defer="" src="/assets/r/vendor1.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-common.js?version=2021.12.02"></script><script defer="" src="/assets/r/awsdocs-doc-page.js?version=2021.12.02"></script><link href="/assets/r/vendor4.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-common.css?version=2021.12.02" rel="stylesheet" /><link href="/assets/r/awsdocs-doc-page.css?version=2021.12.02" rel="stylesheet" /><script async="" id="awsc-panorama-bundle" type="text/javascript" src="https://prod.pa.cdn.uis.awsstatic.com/panorama-nav-init.js" data-config="{'appEntity':'aws-documentation','region':'us-east-1','service':'rds'}"></script><meta id="panorama-serviceSubSection" value="User Guide" /><meta id="panorama-serviceConsolePage" value="MySQL on Amazon RDS versions" /></head><body class="awsdocs awsui"><div class="awsdocs-container"><awsdocs-header></awsdocs-header><awsui-app-layout id="app-layout" class="awsui-util-no-gutters" ng-controller="ContentController as $ctrl" header-selector="awsdocs-header" navigation-hide="false" navigation-width="$ctrl.navWidth" navigation-open="$ctrl.navOpen" navigation-change="$ctrl.onNavChange($event)" tools-hide="$ctrl.hideTools" tools-width="$ctrl.toolsWidth" tools-open="$ctrl.toolsOpen" tools-change="$ctrl.onToolsChange($event)"><div id="guide-toc" dom-region="navigation"><awsdocs-toc></awsdocs-toc></div><div id="main-column" dom-region="content" tabindex="-1"><awsdocs-view class="awsdocs-view"><div id="awsdocs-content"><head><title>MySQL on Amazon RDS versions - Amazon Relational Database Service</title><meta name="pdf" content="/pdfs/AmazonRDS/latest/UserGuide/rds-ug.pdf#MySQL.Concepts.VersionMgmt" /><meta name="rss" content="rdsupdates.rss" /><meta name="forums" content="http://forums.aws.amazon.com/forum.jspa?forumID=60" /><meta name="feedback" content="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=RDS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="feedback-yes" content="feedbackyes.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="feedback-no" content="feedbackno.html?topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html" /><meta name="keywords" content="Amazon Relational Database Service,RDS,DB Instance" /><script type="application/ld+json">
 {
     "@context" : "https://schema.org",
     "@type" : "BreadcrumbList",
@@ -38,22 +39,23 @@
 }
 </script></head><body><div id="main"><div style="display: none"><a href="/pdfs/AmazonRDS/latest/UserGuide/rds-ug.pdf#MySQL.Concepts.VersionMgmt" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/rds/index.html">Amazon RDS</a><a href="Welcome.html">User Guide</a></div><div id="page-toc-src"><a href="#MySQL.Concepts.VersionMgmt.Supported">Supported MySQL minor
                 versions</a><a href="#MySQL.Concepts.VersionMgmt.ReleaseCalendar">Supported MySQL
-                major versions</a><a href="#MySQL.Concepts.DeprecatedVersions">Deprecated MySQL versions</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="MySQL.Concepts.VersionMgmt">MySQL on Amazon RDS versions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>For MySQL, version numbers are organized as version = X.Y.Z. In Amazon RDS terminology, X.Y
+                major versions</a><a href="#mysql-working-with-the-database-preview-environment">
+                The Database Preview environment</a><a href="#mysql-preview-environment-version-8-2">MySQL version 8.2 in the Database Preview environment</a><a href="#mysql-preview-environment-versions">MySQL version 8.1 in the Database Preview environment</a><a href="#MySQL.Concepts.DeprecatedVersions">Deprecated MySQL versions</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="MySQL.Concepts.VersionMgmt">MySQL on Amazon RDS versions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>For MySQL, version numbers are organized as version = X.Y.Z. In Amazon RDS terminology, X.Y
         denotes the major version, and Z is the minor version number. For Amazon RDS implementations, a
         version change is considered major if the major version number changes—for example,
         going from version 5.7 to 8.0. A version change is considered minor if only the minor
         version number changes—for example, going from version 8.0.28 to 8.0.32.</p><div class="highlights" id="inline-topiclist"><h6>Topics</h6><ul><li><a href="#MySQL.Concepts.VersionMgmt.Supported">Supported MySQL minor versions on
                 Amazon RDS</a></li><li><a href="#MySQL.Concepts.VersionMgmt.ReleaseCalendar">Supported MySQL major
-                versions on Amazon RDS</a></li><li><a href="#MySQL.Concepts.DeprecatedVersions">Deprecated versions  for
+                versions on Amazon RDS</a></li><li><a href="#mysql-working-with-the-database-preview-environment">Working with the
+                Database Preview environment</a></li><li><a href="#mysql-preview-environment-version-8-2">MySQL version 8.2 in the Database Preview environment</a></li><li><a href="#mysql-preview-environment-versions">MySQL version 8.1 in the Database Preview environment</a></li><li><a href="#MySQL.Concepts.DeprecatedVersions">Deprecated versions  for
                 Amazon RDS for MySQL</a></li></ul></div>
         <h2 id="MySQL.Concepts.VersionMgmt.Supported">Supported MySQL minor versions on
                 Amazon RDS</h2>
-
+        
         <p>Amazon RDS currently supports the following minor versions of MySQL. </p>
-
+        
         <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Dates with only a month and a year are approximate and are updated with an exact date when it’s known.</p></div></div>
-
-        <div class="table-container" id="rds-mysql-version-reference"><div class="table-contents"><table id="w1056aac41c39b7b7"><thead>
+        <div class="table-container" id="rds-mysql-version-reference"><div class="table-contents"><table id="w1193aac45c39b7b7"><thead>
                     <tr>
                         <th>MySQL  engine version</th>
                         <th>Community release date</th>
@@ -66,6 +68,32 @@
                     </tr>
                     <tr>
                         <td tabindex="-1">
+                            <p>8.0.36</p>
+                        </td>
+                        <td tabindex="-1">
+                            <p>16 January 2024</p>
+                        </td>
+                        <td tabindex="-1">
+                            <p>12 February 2024</p></td>
+                        <td tabindex="-1">
+                            <p>March 2025</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>8.0.35</p>
+                        </td>
+                        <td tabindex="-1">
+                            <p>25 October 2023</p>
+                        </td>
+                        <td tabindex="-1">
+                            <p>9 November 2023</p></td>
+                        <td tabindex="-1">
+                            <p>March 2025</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
                             <p>8.0.34</p>
                         </td>
                         <td tabindex="-1">
@@ -74,7 +102,7 @@
                         <td tabindex="-1">
                             <p>9 August 2023</p></td>
                         <td tabindex="-1">
-                            <p>29 September 2024</p>
+                            <p>September 2024</p>
                         </td>
                     </tr>
                     <tr>
@@ -102,7 +130,7 @@
                             <p>7 February 2023</p>
                         </td>
                         <td tabindex="-1">
-                            <p>March 2024</p>
+                            <p>September 2024</p>
                         </td>
                     </tr>
                     <tr>
@@ -116,21 +144,7 @@
                             <p>10 November 2022</p>
                         </td>
                         <td tabindex="-1">
-                            <p>March 2024</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>8.0.30</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>26 July 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>9 September 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>September 2023</p>
+                            <p>29 March 2024</p>
                         </td>
                     </tr>
                     <tr>
@@ -144,11 +158,21 @@
                             <p>11 March 2022</p>
                         </td>
                         <td tabindex="-1">
-                            <p>March 2024</p>
+                            <p>29 March 2024</p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="4" tabindex="-1"><b>5.7</b></td>
+                    </tr>
+                    <tr>
+                        <td tabindex="-1">
+                            <p>5.7.44*</p>
+                        </td>
+                        <td tabindex="-1">25 October 2023</td>
+                        <td tabindex="-1">2 November 2023</td>
+                        <td tabindex="-1">
+                            <p>29 February 2024</p>
+                        </td>
                     </tr>
                     <tr>
                         <td tabindex="-1">
@@ -160,168 +184,83 @@
                         <td tabindex="-1">
                             <p>9 August 2023</p></td>
                         <td tabindex="-1">
-                            <p>December 2023</p>
+                            <p>29 February 2024</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>5.7.42</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>18 April 2023</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>15 June 2023</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>December 2023</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>5.7.41</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>17 January 2023</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>7 February 2023</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>December 2023</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>5.7.40</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>11 October 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>11 November 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>December 2023</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>5.7.39</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>26 July 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>29 September 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>December 2023</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>5.7.38</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>26 April 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>6 June 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>December 2023</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>5.7.37</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>18 January 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>11 March 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>December 2023</p>
-                        </td>
-                    </tr>
-
                 </table></div></div>
-
+        <p>* Amazon RDS Extended Support eligible minor engine version. For more information, see <a href="./extended-support.html">Using Amazon RDS Extended Support</a>.</p>
         <p>You can specify any currently supported MySQL version when creating a new DB
             instance. You can specify the major version (such as MySQL 5.7), and any
             supported minor version for the specified major version. If no version is specified,
             Amazon RDS defaults to a supported version, typically the most recent version. If a
-            major version is specified but a minor version is not, Amazon RDS defaults to a recent
-            release of the major version you have specified. To see a list of supported versions,
-            as well as defaults for newly created DB instances, use the
+            major version is specified but a minor version is not, Amazon RDS defaults to a recent 
+            release of the major version you have specified. To see a list of supported versions, 
+            as well as defaults for newly created DB instances, use the 
             <a href="https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-engine-versions.html"><code class="code">describe-db-engine-versions</code></a> AWS CLI command.</p>
-
+        
         <p>For example, to list the supported engine versions for RDS for MySQL, run the following CLI command:</p>
-
+        
         <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws rds describe-db-engine-versions --engine mysql --query "*[].<span>{</span>Engine:Engine,EngineVersion:EngineVersion}" --output text</code></pre>
-
-        <p>The default MySQL version might vary by AWS Region. To create a DB instance with
-            a specific minor version, specify the minor version during DB instance creation.
-            You can determine the default minor version for an AWS Region using the following
+        
+        <p>The default MySQL version might vary by AWS Region. To create a DB instance with 
+            a specific minor version, specify the minor version during DB instance creation. 
+            You can determine the default minor version for an AWS Region using the following 
             AWS CLI command:</p>
-
+        
         <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws rds describe-db-engine-versions --default-only --engine mysql --engine-version <code class="replaceable">major-engine-version</code> --region <code class="replaceable">region</code> --query "*[].<span>{</span>Engine:Engine,EngineVersion:EngineVersion}" --output text</code></pre>
-
-        <p>Replace <code class="replaceable">major-engine-version</code> with the major engine version, and replace
-            <code class="replaceable">region</code> with the AWS Region. For example, the following AWS CLI command
-            returns the default MySQL minor engine version for the 5.7 major version and the
+        
+        <p>Replace <code class="replaceable">major-engine-version</code> with the major engine version, and replace 
+            <code class="replaceable">region</code> with the AWS Region. For example, the following AWS CLI command 
+            returns the default MySQL minor engine version for the 5.7 major version and the 
             US West (Oregon) AWS Region (us-west-2):</p>
-
+        
         <pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">aws rds describe-db-engine-versions --default-only --engine mysql --engine-version 5.7 --region us-west-2 --query "*[].<span>{</span>Engine:Engine,EngineVersion:EngineVersion}" --output text</code></pre>
-
+        
         <p>With Amazon RDS, you control when to upgrade your MySQL instance to a new major version
             supported by Amazon RDS. You can maintain compatibility with specific MySQL versions,
             test new versions with your application before deploying in production, and perform
             major version upgrades at times that best fit your schedule.</p>
-
+        
         <p>When automatic minor version upgrade is enabled, your DB instance will be upgraded automatically to
             new MySQL minor versions as they are supported by Amazon RDS. This patching occurs
-            during your scheduled maintenance window. You can modify a DB instance to enable or disable
+            during your scheduled maintenance window. You can modify a DB instance to enable or disable 
             automatic minor version upgrades.
         </p>
-
+        
         <p>If you opt out of automatically scheduled upgrades, you can manually upgrade to a
             supported minor version release by following the same procedure as you would for a
             major version update. For information, see <a href="./USER_UpgradeDBInstance.Upgrading.html">Upgrading
             a DB instance engine version</a>.
         </p>
-
-        <p>Amazon RDS currently supports the major version upgrades from MySQL version 5.6 to version 5.7,
-            and from MySQL version 5.7 to version 8.0.
-            Because major version upgrades involve some compatibility risk, they do not occur automatically;
+        
+        <p>Amazon RDS currently supports the major version upgrades from MySQL version 5.6 to version 5.7, 
+            and from MySQL version 5.7 to version 8.0.  
+            Because major version upgrades involve some compatibility risk, they do not occur automatically; 
             you must make a request to modify the DB instance. You should thoroughly test any upgrade before
             upgrading your production instances. For information about upgrading a MySQL DB instance,
             see <a href="./USER_UpgradeDBInstance.MySQL.html">Upgrading the MySQL DB engine</a>.
         </p>
-
+        
         <p>You can test a DB instance against a new version before upgrading by creating a DB
             snapshot of your existing DB instance, restoring from the DB snapshot to create a
             new DB instance, and then initiating a version upgrade for the new DB instance. You
             can then experiment safely on the upgraded clone of your DB instance before deciding
             whether or not to upgrade your original DB instance. </p>
-
-
+        
+     
         <h2 id="MySQL.Concepts.VersionMgmt.ReleaseCalendar">Supported MySQL major
                 versions on Amazon RDS</h2>
-
+        
         <p>RDS for MySQL major versions are available under standard support at least until
             community end of life for the corresponding community version. You can continue running
             a major version past its RDS end of standard support date for a fee. For more
-            information, see <a href="./extended-support.html">Using Amazon RDS Extended Support</a> and <a href="http://aws.amazon.com/rds/mysql/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon RDS for MySQL pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
+            information, see <a href="./extended-support.html">Using Amazon RDS Extended Support</a> and <a href="https://aws.amazon.com/rds/mysql/pricing/" rel="noopener noreferrer" target="_blank"><span>Amazon RDS for MySQL pricing</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. </p>
         <p>You can use the following dates to plan your testing and upgrade cycles. </p>
-
-
+        
+        
         <div class="awsdocs-note"><div class="awsdocs-note-title"><awsui-icon name="status-info" variant="link"></awsui-icon><h6>Note</h6></div><div class="awsdocs-note-text"><p>Dates with only a month and a year are approximate and are updated with an exact date when it’s known.</p></div></div>
-
-        <div class="table-container" id="rds-mysql-version-release-calendar"><div class="table-contents"><table id="w1056aac41c39b9c11"><thead>
+        
+        <div class="table-container" id="rds-mysql-version-release-calendar"><div class="table-contents"><table id="w1193aac45c39b9c11"><thead>
                     <tr>
                         <th>MySQL major version</th>
                         <th>Community release date</th>
@@ -357,7 +296,7 @@
                     </tr>
                     <tr>
                         <td tabindex="-1">
-                            <p>MySQL 5.7</p>
+                            <p>MySQL 5.7*</p>
                         </td>
                         <td tabindex="-1">
                             <p>21 October 2015</p>
@@ -377,41 +316,132 @@
                             <p>28 February 2027</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td tabindex="-1">
-                            <p>MySQL 5.6</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>5 February 2013</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>1 July 2013</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>5 February 2021</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>1 March 2022</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>N/A</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>N/A</p>
-                        </td>
-                        <td tabindex="-1">
-                            <p>N/A</p>
-                        </td>
-                    </tr>
-                </table></div></div>
-
-
+                </table></div></div>   
+        <p>* MySQL 5.7 is now only available under RDS Extended Support. For more information, see <a href="./extended-support.html">Using Amazon RDS Extended Support</a>.</p>
+     
+        <h2 id="mysql-working-with-the-database-preview-environment">Working with the
+                Database Preview environment</h2>
+        <p>In July 2023, Oracle announced a new release model for MySQL. This model includes two types of releases: 
+            Innovation Releases and LTS releases. Amazon RDS makes MySQL Innovation Releases available in the RDS Preview environment. 
+            To learn more about the MySQL Innovation releases, see <a href="https://blogs.oracle.com/mysql/post/introducing-mysql-innovation-and-longterm-support-lts-versions" rel="noopener noreferrer" target="_blank"><span>
+                Introducing MySQL Innovation and Long-Term Support (LTS) versions</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>        
+        <p>RDS for MySQL DB instances in the Database Preview environment are functionally similar to other RDS for MySQL
+            DB instances. However, you can't use the Database Preview environment for production workloads.</p>
+        <p>Preview environments have the following limitations:</p>
+        <div class="itemizedlist">
+             
+             
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>Amazon RDS deletes all DB instances 60 days after you create them, along with any
+                    backups and snapshots.</p>
+            </li><li class="listitem">
+                <p>You can only use General Purpose SSD and Provisioned IOPS SSD storage. </p>
+            </li><li class="listitem">
+                <p>You can't get help from AWS Support with DB instances. <span>Instead, you can post your
+                    questions to the AWS‐managed Q&amp;A community,
+                    <a href="https://repost.aws/tags/TAsibBK6ZeQYihN9as4S_psg/amazon-relational-database-service" rel="noopener noreferrer" target="_blank"><span>AWS re:Post</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</span></p>
+            </li><li class="listitem">
+                <p>You can't copy a snapshot of a DB instance to a production environment.</p>
+            </li></ul></div>
+        
+        <p>The following options are supported by the preview.</p>
+        <div class="itemizedlist">
+                        
+             
+             
+        <ul class="itemizedlist"><li class="listitem">
+                <p>You can create DB instances using db.m6i, db.r6i, db.m6g, db.m5, db.t3, db.r6g, and db.r5 
+                    DB instance classes. For more information about RDS instance classes, see <a href="./Concepts.DBInstanceClass.html">DB instance classes</a>. </p>
+            </li><li class="listitem">
+                <p>You can use both single-AZ and multi-AZ deployments.</p>
+            </li><li class="listitem">
+                <p>You can use standard MySQL dump and load functions to export databases
+                    from or import databases to the Database Preview environment.</p>
+            </li></ul></div>
+  
+         
+            <h3 id="mysql-preview-environment-exclusions">Features not supported in the
+                    Database Preview environment</h3>
+            <p>The following features aren't available in the Database Preview environment:</p>
+            <div class="itemizedlist">
+                 
+                 
+            <ul class="itemizedlist"><li class="listitem">
+                    <p>Cross-Region snapshot copy</p>
+                </li><li class="listitem">
+                    <p>Cross-Region read replicas</p>
+                </li></ul></div>
+         
+        
+         
+            <h3 id="mysql-create-db-instance-in-preview-environment">Creating a new DB
+                    instance in the Database Preview environment</h3>
+            <p>You can create a DB instance in the Database Preview environment using the AWS Management Console, AWS CLI, or RDS API.</p>
+            
+            <div class="collapsible" data-expand-section="mysql-create-db-instance-in-preview-environment.CON"><awsui-expandable-section variant="container" header="Console" id="mysql-create-db-instance-in-preview-environment.CON" expanded="true"><div class="procedure"><h6>To create a DB instance in the Database Preview environment</h6><ol><li><p>Sign in to the AWS Management Console and open the Amazon RDS console at
+         <a href="https://console.aws.amazon.com/rds/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/rds/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p></li><li>
+                            <p>Choose <b>Dashboard</b> from the navigation
+                                pane.</p>
+                        </li><li>
+                            <p>In the <b>Dashboard</b> page, locate the <b>Database Preview Environment</b> 
+                                section, as shown in the following image.</p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="/images/AmazonRDS/latest/UserGuide/images/preview-environment-dashboard.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                                    Preview environment section with link displayed in RDS Console, Dashboard&#xA;                                    &#xA;                                " style="max-width:100%" />
+                                 
+                                 
+                            </div>
+                            <p>You can navigate directly to the <a href="https://us-east-2.console.aws.amazon.com/rds-preview/home?region=us-east-2#" rel="noopener noreferrer" target="_blank"><span>Database Preview environment</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>. Before you can proceed, you must acknowledge and
+                                accept the limitations. 
+                            </p>
+                            <div class="mediaobject">
+                                 
+                                    <img src="/images/AmazonRDS/latest/UserGuide/images/preview-environment-console.png" class="aws-docs-img-whiteBg aws-docs-img-padding" alt="&#xA;                                    Preview environment limitations dialog&#xA;                                    &#xA;                                " style="max-width:100%" />
+                                 
+                                 
+                            </div>
+                        </li><li>
+                            <p>To create the RDS for MySQL DB instance, follow the same process that you would for creating any
+                                Amazon RDS DB instance. For more information, see the
+                                <a href="./USER_CreateDBInstance.html#USER_CreateDBInstance.CON">Console</a> procedure in                      
+                                <a href="./USER_CreateDBInstance.html#USER_CreateDBInstance.Creating">Creating a DB instance</a>.</p>
+                        </li></ol></div></awsui-expandable-section><awsui-expandable-section variant="container" header="AWS CLI" id="mysql-create-db-instance-in-preview-environment.CLI" expanded="false"><p>To create a DB instance in the Database Preview environment using the AWS CLI,
+                        use the following endpoint.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">rds-preview.us-east-2.amazonaws.com</code></pre><p>To create the RDS for MySQL DB instance, follow the same process that you would for creating any
+                        Amazon RDS DB instance. For more information, see the
+                        <a href="./USER_CreateDBInstance.html#USER_CreateDBInstance.CLI">AWS CLI</a> procedure in                      
+                        <a href="./USER_CreateDBInstance.html#USER_CreateDBInstance.Creating">Creating a DB instance</a>.</p></awsui-expandable-section><awsui-expandable-section variant="container" header="RDS API" id="mysql-create-db-instance-in-preview-environment.API" expanded="false"><p>To create a DB instance in the Database Preview environment using the RDS API,
+                        use the following endpoint.</p><pre class="programlisting"><div class="code-btn-container"><div class="btn-copy-code" title="Copy"><awsui-icon name="copy"></awsui-icon></div></div><code class="nohighlight">rds-preview.us-east-2.amazonaws.com</code></pre><p>To create the RDS for MySQL DB instance, follow the same process that you would for creating any
+                        Amazon RDS DB instance. For more information, see the
+                        <a href="./USER_CreateDBInstance.html#USER_CreateDBInstance.API">RDS API</a> procedure in                      
+                        <a href="./USER_CreateDBInstance.html#USER_CreateDBInstance.Creating">Creating a DB instance</a>.</p></awsui-expandable-section></div>
+            
+         
+                
+     
+        <h2 id="mysql-preview-environment-version-8-2">MySQL version 8.2 in the Database Preview environment</h2>
+        <p>MySQL version 8.2 is now available in the Amazon RDS Database Preview environment. MySQL
+            version 8.2 contains several improvements that are described in <a href="https://dev.mysql.com/doc/relnotes/mysql/8.2/en/news-8-2-0.html" rel="noopener noreferrer" target="_blank"><span> Changes in
+                MySQL 8.2.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>For information on the Database Preview environment, see <a href="#mysql-working-with-the-database-preview-environment">Working with the
+                Database Preview environment</a>. To access the
+            Preview Environment from the console, select <a href="https://console.aws.amazon.com/rds-preview/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/rds-preview/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+     
+        <h2 id="mysql-preview-environment-versions">MySQL version 8.1 in the Database Preview environment</h2>
+        <p>MySQL version 8.1 is now available in the Amazon RDS Database Preview environment. MySQL
+            version 8.1 contains several improvements that are described in <a href="https://dev.mysql.com/doc/relnotes/mysql/8.1/en/news-8-1-0.html" rel="noopener noreferrer" target="_blank"><span> Changes in
+                MySQL 8.1.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        <p>For information on the Database Preview environment, see <a href="#mysql-working-with-the-database-preview-environment">Working with the
+                Database Preview environment</a>. To access the
+            Preview Environment from the console, select <a href="https://console.aws.amazon.com/rds-preview/" rel="noopener noreferrer" target="_blank"><span>https://console.aws.amazon.com/rds-preview/</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+     
         <h2 id="MySQL.Concepts.DeprecatedVersions">Deprecated versions  for
                 Amazon RDS for MySQL</h2>
-
+        
         <p>Amazon RDS for MySQL version 5.1, 5.5, and 5.6 are deprecated.</p>
-
-        <p>For information about the Amazon RDS deprecation policy for MySQL, see
-            <a href="http://aws.amazon.com/rds/faqs/" rel="noopener noreferrer" target="_blank"><span>Amazon RDS FAQs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
-
+        
+        <p>For information about the Amazon RDS deprecation policy for MySQL, see 
+            <a href="https://aws.amazon.com/rds/faqs/" rel="noopener noreferrer" target="_blank"><span>Amazon RDS FAQs</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        
     <awsdocs-copyright class="copyright-print"></awsdocs-copyright><awsdocs-thumb-feedback right-edge="{{$ctrl.thumbFeedbackRightEdge}}"></awsdocs-thumb-feedback></div><noscript><div><div><div><div id="js_error_message"><p><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" alt="Warning" /> <strong>Javascript is disabled or is unavailable in your browser.</strong></p><p>To use the Amazon Web Services Documentation, Javascript must be enabled. Please refer to your browser's Help pages for instructions.</p></div></div></div></div></noscript><div id="main-col-footer" class="awsui-util-font-size-0"><div id="doc-conventions"><a target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></div><div class="prev-next"><div id="previous" class="prev-link" accesskey="p" href="./MySQL.Concepts.FeatureSupport.html">MySQL feature support</div><div id="next" class="next-link" accesskey="n" href="./USER_ConnectToInstance.html">Connecting to a DB instance running MySQL</div></div></div><awsdocs-page-utilities></awsdocs-page-utilities></div><div id="quick-feedback-yes" style="display: none;"><div class="title">Did this page help you? - Yes</div><div class="content"><p>Thanks for letting us know we're doing a good job!</p><p>If you've got a moment, please tell us what we did right so we can do more of it.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=RDS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html"></awsui-button></p></div></div><div id="quick-feedback-no" style="display: none;"><div class="title">Did this page help you? - No</div><div class="content"><p>Thanks for letting us know this page needs work. We're sorry we let you down.</p><p>If you've got a moment, please tell us how we can make the documentation better.</p><p><awsui-button id="fblink" rel="noopener noreferrer" target="_blank" text="Feedback" click="linkClick($event)" href="https://docs.aws.amazon.com/forms/aws-doc-feedback?hidden_service_name=RDS&amp;topic_url=https://docs.aws.amazon.com/en_us/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html"></awsui-button></p></div></div></div></body></div></awsdocs-view><div class="page-loading-indicator" id="page-loading-indicator"><awsui-spinner size="large"></awsui-spinner></div></div><div id="tools-panel" dom-region="tools"><awsdocs-tools-panel id="awsdocs-tools-panel"></awsdocs-tools-panel></div></awsui-app-layout><awsdocs-cookie-banner class="doc-cookie-banner"></awsdocs-cookie-banner></div></body></html>

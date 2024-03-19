@@ -1,5 +1,6 @@
 import calendar
 import logging
+import re
 from collections.abc import Iterable
 from datetime import (
     date,
@@ -64,14 +65,22 @@ def engine_with_url(value: str) -> Engine:
     return Engine(value)
 
 
+MONTH_YEAR = re.compile(r"\w+ \d+")
+DAY_MONTH_YEAR = re.compile(r"\d+ \w+ \d+")
+MONTH_DAY_YEAR = re.compile(r"\w+ \d+, \d+")
+
+
 def parse_date(date_str: str) -> datetime:
-    try:
+    if MONTH_YEAR.fullmatch(date_str):
         d = datetime.strptime(date_str, "%B %Y")
         # a date like "March 2022" means actually "March 31, 2022"
         last_day_of_month = calendar.monthrange(d.year, d.month)[1]
         return d.replace(day=last_day_of_month)
-    except ValueError:
+    if DAY_MONTH_YEAR.fullmatch(date_str):
         return datetime.strptime(date_str, "%d %B %Y")
+    if MONTH_DAY_YEAR.fullmatch(date_str):
+        return datetime.strptime(date_str, "%B %d, %Y")
+    raise ValueError(f"Unknown date format: {date_str}")
 
 
 def parse_aws_release_calendar(page: str) -> list[CalItem]:
