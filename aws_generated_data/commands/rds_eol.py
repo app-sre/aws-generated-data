@@ -42,7 +42,7 @@ class RdsItem(BaseModel):
 CalItem = tuple[str, datetime]
 
 
-class Engine:
+class Engine:  # noqa: PLW1641
     def __init__(self, value: str):
         self.name, self.url = value.split(":", maxsplit=1)
 
@@ -72,7 +72,7 @@ def parse_aws_release_calendar(page: str) -> list[CalItem]:
 
     for row in version_table.find_all("tr"):  # type: ignore
         cols = row.find_all("td")
-        if len(cols) == 4:
+        if len(cols) == 4:  # noqa: PLR2004
             items.append((cols[0].text.strip(), parse_date(cols[3].text.strip())))
 
     return items

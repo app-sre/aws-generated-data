@@ -184,12 +184,10 @@ def test_cli_rds_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
     )
     assert result.exit_code == 0
     read_output_file_mock.assert_called_once_with(output_file, RdsItem)
-    get_rds_eol_data_mock.assert_has_calls(
-        [
-            mocker.call(Engine("postgres:https://example.com/postgres")),
-            mocker.call(Engine("mysql:https://example.com/mysql")),
-        ]
-    )
+    get_rds_eol_data_mock.assert_has_calls([
+        mocker.call(Engine("postgres:https://example.com/postgres")),
+        mocker.call(Engine("mysql:https://example.com/mysql")),
+    ])
     write_output_file_mock.assert_called_once_with(
         output_file,
         [
