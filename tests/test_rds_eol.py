@@ -5,7 +5,6 @@ from pathlib import Path
 
 import pytest
 import requests_mock
-import yaml
 from pytest_mock import MockerFixture
 from typer.testing import CliRunner
 
@@ -13,14 +12,10 @@ from aws_generated_data.cli import app
 from aws_generated_data.commands.rds_eol import (
     CalItem,
     Engine,
-    RdsEol,
     RdsItem,
     engine_with_url,
     get_rds_eol_data,
     parse_aws_release_calendar,
-    parse_date,
-    read_output_file,
-    write_output_file,
 )
 
 
@@ -44,7 +39,7 @@ from aws_generated_data.commands.rds_eol import (
                 ("14.7", dt(2024, 3, 29, 0, 0)),
                 ("14.6", dt(2024, 3, 29, 0, 0)),
                 ("14.5", dt(2024, 3, 29, 0, 0)),
-                ("14.4", dt(2024, 3,29, 0, 0)),
+                ("14.4", dt(2024, 3, 29, 0, 0)),
                 ("14.3", dt(2024, 3, 29, 0, 0)),
                 ("13.14", dt(2025, 6, 30, 0, 0)),
                 ("13.13", dt(2025, 3, 31, 0, 0)),
@@ -101,78 +96,6 @@ def test_get_rds_eol_data(
         RdsItem(engine="mysql", version="1.2.3", eol=date(2021, 1, 1))
     ]
     m.assert_called_once_with("data")
-
-
-def test_get_rds_eol_data_with_asterisk(
-    mocker: MockerFixture, requests_mock: requests_mock.Mocker
-) -> None:
-    m = mocker.patch(
-        "aws_generated_data.commands.rds_eol.parse_aws_release_calendar",
-        autospec=True,
-        return_value=[("1.2.3*", dt(2021, 1, 1))],
-    )
-    requests_mock.get("https://example.com", text="data")
-    assert get_rds_eol_data(Engine("mysql:https://example.com")) == [
-        RdsItem(engine="mysql", version="1.2.3", eol=date(2021, 1, 1))
-    ]
-    m.assert_called_once_with("data")
-
-
-@pytest.mark.parametrize(
-    "date_str, expected",
-    [
-        ("10 January 2021", dt(2021, 1, 10)),
-        ("January 10, 2021", dt(2021, 1, 10)),
-        ("15 July 1979", dt(1979, 7, 15)),
-        ("January 2021", dt(2021, 1, 31)),
-        ("September 2021", dt(2021, 9, 30)),
-        pytest.param(
-            "just an arbitry string",
-            None,
-            marks=pytest.mark.xfail(strict=True, raises=ValueError),
-        ),
-    ],
-)
-def test_parse_date(date_str: str, expected: dt) -> None:
-    assert parse_date(date_str) == expected
-
-
-RDS_ITEMS = [
-    RdsItem(engine="something-else", version="1.2.4", eol=date(2021, 1, 1)),
-    RdsItem(engine="foobar", version="1.2.3", eol=date(2021, 1, 1)),
-]
-
-
-@pytest.mark.parametrize(
-    "output, expected",
-    [
-        # output does not exist yet
-        (None, []),
-        # empty file
-        ("", []),
-        # not a yaml file
-        ("garbage", []),
-        # another yaml file
-        (yaml.dump({"foo": "bar"}), []),
-        # another yaml file
-        (yaml.dump([{"foo": "bar"}]), []),
-        # real yaml file
-        (yaml.dump(RdsEol(sorted(RDS_ITEMS, reverse=True)).model_dump()), RDS_ITEMS),
-    ],
-)
-def test_read_output_file(
-    tmp_path: Path, output: str | None, expected: list[RdsItem]
-) -> None:
-    output_file = tmp_path / "output.yaml"
-    if output:
-        output_file.write_text(output)
-    assert read_output_file(output_file) == expected
-
-
-def test_write_output_file(tmp_path: Path) -> None:
-    output_file = tmp_path / "output.yaml"
-    write_output_file(output_file, RDS_ITEMS)
-    assert read_output_file(output_file) == RDS_ITEMS
 
 
 #
@@ -245,13 +168,11 @@ def test_cli_rds_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
         ],
     )
     assert result.exit_code == 0
-    read_output_file_mock.assert_called_once_with(output_file)
-    get_rds_eol_data_mock.assert_has_calls(
-        [
-            mocker.call(Engine("postgres:https://example.com/postgres")),
-            mocker.call(Engine("mysql:https://example.com/mysql")),
-        ]
-    )
+    read_output_file_mock.assert_called_once_with(output_file, RdsItem)
+    get_rds_eol_data_mock.assert_has_calls([
+        mocker.call(Engine("postgres:https://example.com/postgres")),
+        mocker.call(Engine("mysql:https://example.com/mysql")),
+    ])
     write_output_file_mock.assert_called_once_with(
         output_file,
         [

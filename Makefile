@@ -2,8 +2,8 @@ DIRS := aws_generated_data
 POETRY_RUN := poetry run --no-ansi --no-interaction
 
 format:
-	$(POETRY_RUN) black $(DIRS)
-	$(POETRY_RUN) isort $(DIRS)
+	$(POETRY_RUN) ruff check
+	$(POETRY_RUN) ruff format
 .PHONY: format
 
 build-test-image:
@@ -14,11 +14,10 @@ pr-check: build-test-image
 .PHONY: pr-check
 
 test:
+	$(POETRY_RUN) ruff check --no-fix
+	$(POETRY_RUN) ruff format --check
 	$(POETRY_RUN) pytest -vv
-	$(POETRY_RUN) flake8 $(DIRS)
 	$(POETRY_RUN) mypy $(DIRS)
-	$(POETRY_RUN) black --check $(DIRS)
-	$(POETRY_RUN) isort --check-only $(DIRS)
 .PHONY: test
 
 ci-run: build-test-image
@@ -29,7 +28,9 @@ ci-run: build-test-image
 	docker run --rm \
 		-v '$(PWD)/output':/output \
 		-e AGD_RDS_EOL_ENGINES='$(AGD_RDS_EOL_ENGINES)' \
-		-e AGD_RDS_EOL_OUTPUT=/output/rds_eol.yaml \
+		-e AGD_RDS_EOL_OUTPUT='/output/$(AGD_RDS_EOL_OUTPUT)' \
+		-e AGD_MSK_RELEASE_CALENDAR_URL='$(AGD_MSK_RELEASE_CALENDAR_URL)' \
+		-e AGD_MSK_EOL_OUTPUT='/output/$(AGD_MSK_EOL_OUTPUT)' \
 		agd-test make run
 
 	# Commit changes if any
@@ -42,7 +43,10 @@ ci-run: build-test-image
 .PHONY: ci-run
 
 .PHONY: run
-run: run-rds-eol
+run: run-rds-eol run-msk-eol
 
 run-rds-eol:
 	$(POETRY_RUN) agd rds-eol fetch
+
+run-msk-eol:
+	$(POETRY_RUN) agd msk-eol fetch
