@@ -28,7 +28,9 @@ ci-run: build-test-image
 	docker run --rm \
 		-v '$(PWD)/output':/output \
 		-e AGD_RDS_EOL_ENGINES='$(AGD_RDS_EOL_ENGINES)' \
-		-e AGD_RDS_EOL_OUTPUT=/output/rds_eol.yaml \
+		-e AGD_RDS_EOL_OUTPUT='/output/$(AGD_RDS_EOL_OUTPUT)' \
+		-e AGD_MSK_RELEASE_CALENDAR_URL='$(AGD_MSK_RELEASE_CALENDAR_URL)' \
+		-e AGD_MSK_EOL_OUTPUT='/output/$(AGD_MSK_EOL_OUTPUT)' \
 		agd-test make run
 
 	# Commit changes if any
@@ -41,10 +43,10 @@ ci-run: build-test-image
 .PHONY: ci-run
 
 .PHONY: run
-run: run-rds-eol
+run: run-rds-eol run-msk-eol
 
 run-rds-eol:
 	$(POETRY_RUN) agd rds-eol fetch
 
-run-mks-eol:
-	$(POETRY_RUN) agd mks-eol fetch
+run-msk-eol:
+	$(POETRY_RUN) agd msk-eol fetch
