@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from aws_generated_data.commands.rds_eol import RdsItem
 from aws_generated_data.utils import (
     Root,
+    VersionItem,
     filter_items,
     parse_date,
     read_output_file,
@@ -100,3 +101,33 @@ def test_write_output_file(tmp_path: Path) -> None:
     output_file = tmp_path / "output.yaml"
     write_output_file(output_file, RDS_ITEMS)
     assert read_output_file(output_file, RdsItem) == RDS_ITEMS
+
+
+@pytest.mark.parametrize(
+    "version, eol, expected",
+    [
+        ("1.2.3", date(2021, 1, 1), VersionItem(version="1.2.3", eol=date(2021, 1, 1))),
+        (
+            "1.2.3*",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1.2.3*",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1.2.3",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
+        ),
+        (
+            " 1.2.3  ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
+        ),
+    ],
+)
+def test_version_item(version: str, eol: date, expected: VersionItem) -> None:
+    assert VersionItem(version=version, eol=eol) == expected

@@ -5,15 +5,14 @@ from datetime import (
     timedelta,
 )
 from pathlib import Path
-from typing import Any
 
 import requests
 import typer
 from bs4 import BeautifulSoup
-from pydantic import BaseModel, field_validator
 from typing_extensions import Annotated
 
 from aws_generated_data.utils import (
+    VersionItem,
     filter_items,
     parse_date,
     read_output_file,
@@ -22,21 +21,6 @@ from aws_generated_data.utils import (
 
 app = typer.Typer()
 log = logging.getLogger(__name__)
-
-
-class MskItem(BaseModel):
-    version: str
-    eol: date
-
-    @field_validator("version", mode="before")
-    def version_remove_asterisk(cls, value: str) -> str:
-        return value.strip(" ").rstrip("*")
-
-    def __lt__(self, other: Any) -> bool:
-        if not isinstance(other, MskItem):
-            return False
-        return self.version < other.version
-
 
 CalItem = tuple[str, datetime]
 
@@ -60,10 +44,10 @@ def parse_msk_release_calendar(page: str) -> list[CalItem]:
     return items
 
 
-def get_msk_eol_data(msk_release_calendar_url: str) -> list[MskItem]:
+def get_msk_eol_data(msk_release_calendar_url: str) -> list[VersionItem]:
     version_page = requests.get(msk_release_calendar_url)
     return [
-        MskItem(version=version, eol=d.date())
+        VersionItem(version=version, eol=d.date())
         for version, d in parse_msk_release_calendar(version_page.text)
     ]
 
@@ -93,7 +77,9 @@ def fetch(
     ] = 365,
 ) -> None:
     """Fetch RDS EOL data from AWS and saves it to a file."""
-    msk_items_dict = {item.version: item for item in read_output_file(output, MskItem)}
+    msk_items_dict = {
+        item.version: item for item in read_output_file(output, VersionItem)
+    }
     log.info(f"Processing {msk_release_calendar_url} ...")
     for item in get_msk_eol_data(msk_release_calendar_url):
         msk_items_dict[item.version] = item

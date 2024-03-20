@@ -10,10 +10,10 @@ from typing import Any
 import requests
 import typer
 from bs4 import BeautifulSoup
-from pydantic import BaseModel, field_validator
 from typing_extensions import Annotated
 
 from aws_generated_data.utils import (
+    VersionItem,
     filter_items,
     parse_date,
     read_output_file,
@@ -24,14 +24,8 @@ app = typer.Typer()
 log = logging.getLogger(__name__)
 
 
-class RdsItem(BaseModel):
+class RdsItem(VersionItem):
     engine: str
-    version: str
-    eol: date
-
-    @field_validator("version", mode="before")
-    def version_remove_asterisk(cls, value: str) -> str:
-        return value.rstrip("*")
 
     def __lt__(self, other: Any) -> bool:
         if not isinstance(other, RdsItem):

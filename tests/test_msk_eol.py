@@ -11,10 +11,10 @@ from typer.testing import CliRunner
 from aws_generated_data.cli import app
 from aws_generated_data.commands.msk_eol import (
     CalItem,
-    MskItem,
     get_msk_eol_data,
     parse_msk_release_calendar,
 )
+from aws_generated_data.utils import VersionItem
 
 
 @pytest.mark.parametrize(
@@ -59,19 +59,11 @@ def test_get_msk_eol_data(
     m = mocker.patch(
         "aws_generated_data.commands.msk_eol.parse_msk_release_calendar",
         autospec=True,
-        return_value=[
-            ("1.2.3", dt(2021, 1, 1)),
-            # with an asterisk
-            ("1.2.4*", dt(2022, 1, 1)),
-            # with spaces
-            (" 1.2.5  ", dt(2023, 1, 1)),
-        ],
+        return_value=[("1.2.3", dt(2021, 1, 1))],
     )
     requests_mock.get("https://example.com", text="data")
     assert get_msk_eol_data("https://example.com") == [
-        MskItem(version="1.2.3", eol=date(2021, 1, 1)),
-        MskItem(version="1.2.4", eol=date(2022, 1, 1)),
-        MskItem(version="1.2.5", eol=date(2023, 1, 1)),
+        VersionItem(version="1.2.3", eol=date(2021, 1, 1))
     ]
     m.assert_called_once_with("data")
 
@@ -94,10 +86,10 @@ def test_cli_msk_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
         "aws_generated_data.commands.msk_eol.read_output_file",
         autospec=True,
         return_value=[
-            MskItem(version="1.2.4", eol=date(2023, 10, 13)),
-            MskItem(version="1.2.3", eol=date(2023, 10, 12)),
+            VersionItem(version="1.2.4", eol=date(2023, 10, 13)),
+            VersionItem(version="1.2.3", eol=date(2023, 10, 12)),
             # previously existing item with an outdated EOL date
-            MskItem(version="11.1", eol=date(2025, 1, 1)),
+            VersionItem(version="11.1", eol=date(2025, 1, 1)),
         ],
     )
 
@@ -106,10 +98,10 @@ def test_cli_msk_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
         autospec=True,
         return_value=[
             # overwrite the existing item 11.1
-            MskItem(version="11.1", eol=date(2024, 1, 1)),
-            MskItem(version="12.2", eol=date(2024, 1, 1)),
-            MskItem(version="8", eol=date(2024, 1, 1)),
-            MskItem(version="5.7", eol=date(2024, 1, 1)),
+            VersionItem(version="11.1", eol=date(2024, 1, 1)),
+            VersionItem(version="12.2", eol=date(2024, 1, 1)),
+            VersionItem(version="8", eol=date(2024, 1, 1)),
+            VersionItem(version="5.7", eol=date(2024, 1, 1)),
         ],
     )
     write_output_file_mock = mocker.patch(
@@ -129,15 +121,15 @@ def test_cli_msk_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
         ],
     )
     assert result.exit_code == 0
-    read_output_file_mock.assert_called_once_with(output_file, MskItem)
+    read_output_file_mock.assert_called_once_with(output_file, VersionItem)
     get_msk_eol_data_mock.assert_called_once_with("https://example.com")
     write_output_file_mock.assert_called_once_with(
         output_file,
         [
-            MskItem(version="8", eol=date(2024, 1, 1)),
-            MskItem(version="5.7", eol=date(2024, 1, 1)),
-            MskItem(version="12.2", eol=date(2024, 1, 1)),
-            MskItem(version="11.1", eol=date(2024, 1, 1)),
-            MskItem(version="1.2.4", eol=date(2023, 10, 13)),
+            VersionItem(version="8", eol=date(2024, 1, 1)),
+            VersionItem(version="5.7", eol=date(2024, 1, 1)),
+            VersionItem(version="12.2", eol=date(2024, 1, 1)),
+            VersionItem(version="11.1", eol=date(2024, 1, 1)),
+            VersionItem(version="1.2.4", eol=date(2023, 10, 13)),
         ],
     )

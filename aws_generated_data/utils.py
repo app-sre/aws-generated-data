@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Protocol, TypeVar
 
 import yaml
-from pydantic import RootModel, ValidationError
+from pydantic import BaseModel, RootModel, ValidationError, field_validator
 
 MONTH_YEAR = re.compile(r"\w+ \d+")
 DAY_MONTH_YEAR = re.compile(r"\d+ \w+ \d+")
@@ -23,6 +23,20 @@ Root = RootModel[Sequence[Any]]
 
 class HasEOL(Protocol):
     eol: date
+
+
+class VersionItem(BaseModel):
+    version: str
+    eol: date
+
+    @field_validator("version", mode="before")
+    def version_remove_asterisk(cls, value: str) -> str:
+        return value.strip(" ").strip("*")
+
+    def __lt__(self, other: Any) -> bool:
+        if not isinstance(other, VersionItem):
+            return False
+        return self.version < other.version
 
 
 def parse_date(date_str: str) -> datetime:
