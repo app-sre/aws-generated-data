@@ -67,7 +67,11 @@ def parse_aws_release_calendar(page: str) -> list[CalItem]:
     for row in version_table.find_all("tr"):  # type: ignore
         cols = row.find_all("td")
         if len(cols) == 4:  # noqa: PLR2004
-            items.append((cols[0].text.strip(), parse_date(cols[3].text.strip())))
+            try:
+                items.append((cols[0].text.strip(), parse_date(cols[3].text.strip())))
+            except ValueError:
+                # skip invalid dates
+                pass
 
     return items
 
