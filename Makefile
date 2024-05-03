@@ -26,7 +26,7 @@ ci-run: build-test-image
 
 	# Run agd rds-eol
 	docker run --rm \
-		-v '$(PWD)/output':/output \
+		-v '$(PWD)/output':/output:z \
 		-e AGD_RDS_EOL_ENGINES='$(AGD_RDS_EOL_ENGINES)' \
 		-e AGD_RDS_EOL_OUTPUT='/output/$(AGD_RDS_EOL_OUTPUT)' \
 		-e AGD_MSK_RELEASE_CALENDAR_URL='$(AGD_MSK_RELEASE_CALENDAR_URL)' \
