@@ -21,7 +21,7 @@
   eol: 2024-09-30
   version: '15.4'
 - engine: postgres
-  eol: 2024-09-30
+  eol: 2024-06-30
   version: '15.3'
 - engine: postgres
   eol: 2024-03-29
@@ -30,7 +30,7 @@
   eol: 2024-09-30
   version: '14.9'
 - engine: postgres
-  eol: 2024-09-30
+  eol: 2024-06-30
   version: '14.8'
 - engine: postgres
   eol: 2024-03-29
