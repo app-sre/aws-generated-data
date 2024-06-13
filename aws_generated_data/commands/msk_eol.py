@@ -5,11 +5,11 @@ from datetime import (
     timedelta,
 )
 from pathlib import Path
+from typing import Annotated
 
 import requests
 import typer
 from bs4 import BeautifulSoup
-from typing_extensions import Annotated
 
 from aws_generated_data.utils import (
     VersionItem,
