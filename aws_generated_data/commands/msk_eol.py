@@ -7,13 +7,13 @@ from datetime import (
 from pathlib import Path
 from typing import Annotated
 
-import requests
 import typer
 from bs4 import BeautifulSoup
 
 from aws_generated_data.utils import (
     VersionItem,
     filter_items,
+    http_get,
     parse_date,
     read_output_file,
     write_output_file,
@@ -49,10 +49,10 @@ def parse_msk_release_calendar(page: str) -> list[CalItem]:
 
 
 def get_msk_eol_data(msk_release_calendar_url: str) -> list[VersionItem]:
-    version_page = requests.get(msk_release_calendar_url)
+    version_page = http_get(msk_release_calendar_url)
     return [
         VersionItem(version=version, eol=d.date())
-        for version, d in parse_msk_release_calendar(version_page.text)
+        for version, d in parse_msk_release_calendar(version_page)
     ]
 
 

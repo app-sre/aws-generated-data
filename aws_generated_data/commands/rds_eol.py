@@ -7,13 +7,13 @@ from datetime import (
 from pathlib import Path
 from typing import Annotated, Any
 
-import requests
 import typer
 from bs4 import BeautifulSoup
 
 from aws_generated_data.utils import (
     VersionItem,
     filter_items,
+    http_get,
     parse_date,
     read_output_file,
     write_output_file,
@@ -76,10 +76,10 @@ def parse_aws_release_calendar(page: str) -> list[CalItem]:
 
 
 def get_rds_eol_data(engine: Engine) -> list[RdsItem]:
-    version_page = requests.get(engine.url)
+    version_page = http_get(engine.url)
     return [
         RdsItem(engine=engine.name, version=version, eol=d.date())
-        for version, d in parse_aws_release_calendar(version_page.text)
+        for version, d in parse_aws_release_calendar(version_page)
     ]
 
 

@@ -6,6 +6,7 @@ from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Protocol, TypeVar
 
+import requests
 import yaml
 from pydantic import BaseModel, RootModel, ValidationError, field_validator
 
@@ -77,3 +78,8 @@ def write_output_file(output: Path, items: Sequence[Any]) -> None:
 def filter_items(items: Iterable[EOLType], expired_date: date) -> list[EOLType]:
     """Filter items that are not expired."""
     return [item for item in items if item.eol > expired_date]
+
+
+def http_get(url: str) -> str:
+    # AWS blocks Python requests. Use curl's user-agent to bypass the captcha check.
+    return requests.get(url, headers={"user-agent": "curl/8.6.0"}).text
