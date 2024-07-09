@@ -51,7 +51,7 @@ ignore_missing_imports = true
 [tool.ruff]
 line-length = 88
 target-version = 'py311'
-required-version = "0.4.8"
+required-version = "0.4.10"
 src = ["aws_generated_data", "tests"]
 extend-exclude = [".local", ".cache"]
 fix = true
