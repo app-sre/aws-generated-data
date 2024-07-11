@@ -36,9 +36,10 @@
       }
     ]
 }
-</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/msk/latest/developerguide/MSKDevGuide.pdf#supported-kafka-versions" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/msk/index.html">Amazon Managed Streaming for Apache Kafka</a><a href="what-is-msk.html">Developer Guide</a></div><div id="page-toc-src"><a href="#3.6.0">Apache Kafka version 3.6.0 (with production-ready tiered storage)</a><a href="#2.8.2.tiered">Amazon MSK tiered storage version 2.8.2.tiered</a><a href="#2.5.1">Apache Kafka version 2.5.1</a><a href="#2.4.1.1">Amazon MSK bug-fix version 2.4.1.1</a><a href="#2.4.1">Apache Kafka version 2.4.1 (use 2.4.1.1 instead)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="supported-kafka-versions">Supported Apache Kafka versions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) supports the following Apache Kafka and Amazon MSK versions. The Apache Kafka community provides approximately 12 months of support for a version after its release date. For more details check the <a href="https://cwiki.apache.org/confluence/display/KAFKA/Time+Based+Release+Plan#TimeBasedReleasePlan-WhatIsOurEOLPolicy?" rel="noopener noreferrer" target="_blank"><span>Apache Kafka EOL (end of life) policy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="table-container"><div class="table-contents"><table id="w1015aac46b7b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Supported Kafka versions</div></th></tr>
+</script></head><body><div id="main"><div style="display: none"><a href="/pdfs/msk/latest/developerguide/MSKDevGuide.pdf#supported-kafka-versions" target="_blank" rel="noopener noreferrer" title="Open PDF"></a></div><div id="breadcrumbs" class="breadcrumb"><a href="https://aws.amazon.com">AWS</a><a href="/index.html">Documentation</a><a href="/msk/index.html">Amazon Managed Streaming for Apache Kafka</a><a href="what-is-msk.html">Developer Guide</a></div><div id="page-toc-src"><a href="#3.7.kraft">Apache Kafka version 3.7.x  (with production-ready
+                    tiered storage)</a><a href="#3.6.0">Apache Kafka version 3.6.0 (with production-ready tiered storage)</a><a href="#3.5.1">Amazon MSK version 3.5.1</a><a href="#3.4.0">Amazon MSK version 3.4.0</a><a href="#3.3.2">Amazon MSK version 3.3.2</a><a href="#3.3.1">Amazon MSK version 3.3.1</a><a href="#3.1.1">Amazon MSK version 3.1.1</a><a href="#2.8.2.tiered">Amazon MSK tiered storage version 2.8.2.tiered</a><a href="#2.5.1">Apache Kafka version 2.5.1</a><a href="#2.4.1.1">Amazon MSK bug-fix version 2.4.1.1</a><a href="#2.4.1">Apache Kafka version 2.4.1 (use 2.4.1.1 instead)</a></div><div id="main-content" class="awsui-util-container"><div id="main-col-body"><awsdocs-language-banner data-service="$ctrl.pageService"></awsdocs-language-banner><h1 class="topictitle" id="supported-kafka-versions">Supported Apache Kafka versions</h1><div class="awsdocs-page-header-container"><awsdocs-page-header></awsdocs-page-header><awsdocs-filter-selector id="awsdocs-filter-selector"></awsdocs-filter-selector></div><p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) supports the following Apache Kafka and Amazon MSK versions. The Apache Kafka community provides approximately 12 months of support for a version after its release date. For more details check the <a href="https://cwiki.apache.org/confluence/display/KAFKA/Time+Based+Release+Plan#TimeBasedReleasePlan-WhatIsOurEOLPolicy?" rel="noopener noreferrer" target="_blank"><span>Apache Kafka EOL (end of life) policy</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p><div class="table-container"><div class="table-contents"><table id="w1099aac46b7b5"><thead><tr><th class="table-header" colspan="100"><div class="title">Supported Apache Kafka versions</div></th></tr>
                     <tr>
-                        <th>Kafka version</th>
+                        <th>Apache Kafka version</th>
                         <th>MSK release date</th>
                         <th>End of support date</th>
                     </tr>
@@ -126,7 +127,7 @@
                     <tr>
                         <td tabindex="-1"><a href="https://archive.apache.org/dist/kafka/2.8.2/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>2.8.2-tiered</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
                         <td tabindex="-1">2022-10-28</td>
-                        <td tabindex="-1">--</td>
+                        <td tabindex="-1">2025-01-14</td>
                     </tr>
                     <tr>
                         <td tabindex="-1"><a href="https://archive.apache.org/dist/kafka/3.1.1/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.1.1</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
@@ -144,31 +145,88 @@
                         <td tabindex="-1">2024-09-11</td>
                     </tr>
                     <tr>
-                        <td tabindex="-1"><a href="https://downloads.apache.org/kafka/3.3.2/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.3.2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                        <td tabindex="-1"><a href="https://archive.apache.org/dist/kafka/3.3.2/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.3.2</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
                         <td tabindex="-1">2023-03-02</td>
                         <td tabindex="-1">2024-09-11</td>
                     </tr>
                     <tr>
-                        <td tabindex="-1"><a href="https://downloads.apache.org/kafka/3.4.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.4.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                        <td tabindex="-1"><a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.4.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
                         <td tabindex="-1">2023-05-04</td>
-                        <td tabindex="-1">--</td>
+                        <td tabindex="-1">2025-06-17</td>
                     </tr>
                     <tr>
-                        <td tabindex="-1"><a href="https://downloads.apache.org/kafka/3.5.1/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.5.1 (recommended)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                        <td tabindex="-1"><a href="https://archive.apache.org/dist/kafka/3.5.1/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.5.1 (recommended)</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
                         <td tabindex="-1">2023-09-26</td>
                         <td tabindex="-1">--</td>
                     </tr>
                     <tr>
-                        <td tabindex="-1"><a href="https://downloads.apache.org/kafka/3.6.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.6.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                        <td tabindex="-1"><a href="https://archive.apache.org/dist/kafka/3.6.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.6.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
                         <td tabindex="-1">2023-11-16</td>
                         <td tabindex="-1">--</td>
                     </tr>
+                    <tr>
+                        <td tabindex="-1"><a href="https://downloads.apache.org/kafka/3.7.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.7.x</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a></td>
+                        <td tabindex="-1">2024-05-29</td>
+                        <td tabindex="-1">--</td>
+                    </tr>
                 </table></div></div><p>For more information on Amazon MSK version support policy, see <a href="./version-support.html#version-support-policy">Amazon MSK version support policy</a>.</p>
+            <h2 id="3.7.kraft">Apache Kafka version 3.7.x  (with production-ready
+                    tiered storage)</h2>
+            <p>Apache Kafka version 3.7.x on MSK includes support for Apache Kafka version 3.7.0.
+                You can create clusters or upgrade existing clusters to use the new 3.7.x version.
+                With this change in version naming, you no longer have to adopt newer patch fix
+                versions such as 3.7.1 when they are released by the Apache Kafka community. Amazon MSK
+                will automatically update 3.7.x to support future patch versions once they become
+                available. This allows you to benefit from the security and bug fixes available
+                through patch fix versions without triggering a version upgrade. These patch fix
+                versions released by Apache Kafka don't break version compatibility and you can
+                benefit from the new patch fix versions without worrying about read or write errors
+                for your client applications. Please make sure your infrastructure automation tools,
+                such as CloudFormation, are updated to account for this change in version
+                naming.</p>
+            <p>Amazon MSK now supports KRaft mode (Apache Kafka Raft) in Apache Kafka version
+                3.7.x. On Amazon MSK, like with ZooKeeper nodes, KRaft controllers are included at
+                no additional cost to you, and require no additional setup or management from you.
+                You can now create clusters in either KRaft mode or ZooKeeper mode on Apache Kafka
+                version 3.7.x. In Kraft mode, you can add up to 60 brokers to host more
+                partitions per-cluster, without requesting a limit increase, compared to the
+                30-broker quota on Zookeeper-based clusters. To learn more about KRaft on MSK, see <a href="https://docs.aws.amazon.com/msk/latest/developerguide/kraft-intro.html">KRaft mode</a>.</p>
+            <p>Apache Kafka version 3.7.x also includes several bug fixes and new features that
+                improve performance. Key improvements include leader discovery optimizations for
+                clients and log segment flush optimization options. For a complete list of
+                improvements and bug fixes, see the Apache Kafka release notes for <a href="https://downloads.apache.org/kafka/3.7.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.7.0</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a>.</p>
+        
+         
         <h2 id="3.6.0">Apache Kafka version 3.6.0 (with production-ready tiered storage)</h2>
-        <p>For information about Apache Kafka version 3.6.0 (with production-ready tiered storage), see its <a href="https://downloads.apache.org/kafka/3.6.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>release
-            notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Apache Kafka downloads site.</p>
+        <p>For information about Apache Kafka version 3.6.0 (with production-ready tiered
+                storage), see its <a href="https://archive.apache.org/dist/kafka/3.6.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>release
+                    notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Apache Kafka downloads site.</p>
         <p>Amazon MSK will continue to use and manage Zookeeper for quorum management in this
             release for stability.</p>
+     
+            <h2 id="3.5.1">Amazon MSK version 3.5.1</h2>
+            <p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports Apache Kafka version 3.5.1 for new and existing clusters. Apache Kafka 3.5.1 includes several bug fixes and new features that improve performance. Key features include the introduction of new rack-aware partition assignment for consumers. Amazon MSK will continue to use and manage Zookeeper for quorum management in this release. For a complete list of improvements and bug fixes, see the Apache Kafka release notes for 3.5.1. </p>
+            <p>For information about Apache Kafka version 3.5.1, see its <a href="https://archive.apache.org/dist/kafka/3.5.1/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>release
+                notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Apache Kafka downloads site.</p>
+     
+        <h2 id="3.4.0">Amazon MSK version 3.4.0</h2>
+        <p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports Apache Kafka version 3.4.0 for new and existing clusters. Apache Kafka 3.4.0 includes several bug fixes and new features that improve performance. Key features include a fix to improve stability to fetch from the closest replica. Amazon MSK will continue to use and manage Zookeeper for quorum management in this release. For a complete list of improvements and bug fixes, see the Apache Kafka release notes for 3.4.0.</p>
+        <p>For information about Apache Kafka version 3.4.0, see its <a href="https://archive.apache.org/dist/kafka/3.4.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>release
+            notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Apache Kafka downloads site.</p>
+     
+        <h2 id="3.3.2">Amazon MSK version 3.3.2</h2>
+        <p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports Apache Kafka version 3.3.2 for new and existing clusters. Apache Kafka 3.3.2 includes several bug fixes and new features that improve performance. Key features include a fix to improve stability to fetch from the closest replica. Amazon MSK will continue to use and manage Zookeeper for quorum management in this release. For a complete list of improvements and bug fixes, see the Apache Kafka release notes for 3.3.2.</p>
+        <p>For information about Apache Kafka version 3.3.2, see its <a href="https://archive.apache.org/dist/kafka/3.3.2/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>release
+            notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Apache Kafka downloads site.</p>
+     
+        <h2 id="3.3.1">Amazon MSK version 3.3.1</h2>
+        <p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports Apache Kafka version 3.3.1 for new and existing clusters. Apache Kafka 3.3.1 includes several bug fixes and new features that improve performance. Some of the key features include enhancements to metrics and partitioner. Amazon MSK will continue to use and manage Zookeeper for quorum management in this release for stability. For a complete list of improvements and bug fixes, see the Apache Kafka release notes for 3.3.1.</p>
+        <p>For information about Apache Kafka version 3.3.1, see its <a href="https://archive.apache.org/dist/kafka/3.3.1/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>release
+            notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Apache Kafka downloads site.</p>
+     
+        <h2 id="3.1.1">Amazon MSK version 3.1.1</h2>
+        <p>Amazon Managed Streaming for Apache Kafka (Amazon MSK) now supports Apache Kafka version 3.1.1 and 3.2.0 for new and existing clusters. Apache Kafka 3.1.1 and Apache Kafka 3.2.0 includes several bug fixes and new features that improve performance. Some of the key features include enhancements to metrics and the use of topic IDs. MSK will continue to use and manage Zookeeper for quorum management in this release for stability. For a complete list of improvements and bug fixes, see the Apache Kafka release notes for 3.1.1 and 3.2.0.</p>
+        <p>For information about Apache Kafka version 3.1.1 and 3.2.0, see its <a href="https://archive.apache.org/dist/kafka/3.2.0/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.2.0 release notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> and <a href="https://archive.apache.org/dist/kafka/3.1.1/RELEASE_NOTES.html" rel="noopener noreferrer" target="_blank"><span>3.1.1 release notes</span><awsui-icon class="awsdocs-link-icon" name="external"></awsui-icon></a> on the Apache Kafka downloads site.</p>
      
             <h2 id="2.8.2.tiered">Amazon MSK tiered storage version 2.8.2.tiered</h2>
             <p>This release is an Amazon MSK-only version of Apache Kafka version 2.8.2, and is compatible with open source Apache Kafka clients.</p>
