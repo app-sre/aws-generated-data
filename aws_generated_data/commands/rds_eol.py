@@ -70,6 +70,8 @@ def parse_aws_release_calendar(page: str) -> list[CalItem]:
             with contextlib.suppress(ValueError):
                 items.append((cols[0].text.strip(), parse_date(cols[3].text.strip())))
 
+    if not items:
+        raise RuntimeError("Failed to find any version items")
     return items
 
 

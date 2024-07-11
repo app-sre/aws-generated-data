@@ -43,6 +43,8 @@ def parse_msk_release_calendar(page: str) -> list[CalItem]:
             with contextlib.suppress(ValueError):
                 items.append((cols[0].text.strip(), parse_date(date_str)))
 
+    if not items:
+        raise RuntimeError("Failed to find any version items")
     return items
 
 
