@@ -25,7 +25,7 @@ types-requests = "^2.31.0.2"
 types-beautifulsoup4 = "^4.12.0.6"
 requests-mock = "^1.11.0"
 pytest-mock = "^3.11.1"
-ruff = "^0.4.8"
+ruff = "^0.5.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -51,7 +51,7 @@ ignore_missing_imports = true
 [tool.ruff]
 line-length = 88
 target-version = 'py311'
-required-version = "0.4.10"
+required-version = "0.5.1"
 src = ["aws_generated_data", "tests"]
 extend-exclude = [".local", ".cache"]
 fix = true
@@ -70,6 +70,12 @@ extend-select = [
     "PL",
     # pyupgrade
     "UP",
+    # flake8-simply
+    "SIM",
+    # flake8-bugbear
+    "B",
+    # flake8-comprehensions
+    "C4",
 ]
 
 [tool.ruff.format]

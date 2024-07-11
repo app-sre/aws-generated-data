@@ -1,3 +1,4 @@
+import contextlib
 import logging
 from datetime import (
     date,
@@ -39,11 +40,8 @@ def parse_msk_release_calendar(page: str) -> list[CalItem]:
             date_str = cols[2].text.strip()
             if date_str == "--":
                 continue
-            try:
+            with contextlib.suppress(ValueError):
                 items.append((cols[0].text.strip(), parse_date(date_str)))
-            except ValueError:
-                # skip invalid dates
-                pass
 
     return items
 
