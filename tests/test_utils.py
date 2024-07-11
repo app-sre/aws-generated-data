@@ -106,6 +106,48 @@ def test_write_output_file(tmp_path: Path) -> None:
 @pytest.mark.parametrize(
     "version, eol, expected",
     [
+        # major.minor.patch.special
+        (
+            "1.2.3.4",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        (
+            "1.2.3.4*",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1.2.3.4*",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1.2.3.4",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        (
+            " 1.2.3.4  ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        (
+            " 1.2.3.4 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version 1.2.3.4 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version1.2.3.4(LTS)",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3.4", eol=date(2021, 1, 1)),
+        ),
+        # major.minor.patch
         ("1.2.3", date(2021, 1, 1), VersionItem(version="1.2.3", eol=date(2021, 1, 1))),
         (
             "1.2.3*",
@@ -127,7 +169,165 @@ def test_write_output_file(tmp_path: Path) -> None:
             date(2021, 1, 1),
             VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
         ),
+        (
+            " 1.2.3 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version 1.2.3 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version1.2.3(LTS)",
+            date(2021, 1, 1),
+            VersionItem(version="1.2.3", eol=date(2021, 1, 1)),
+        ),
+        # major.minor
+        ("1.2", date(2021, 1, 1), VersionItem(version="1.2", eol=date(2021, 1, 1))),
+        (
+            "1.2*",
+            date(2021, 1, 1),
+            VersionItem(version="1.2", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1.2*",
+            date(2021, 1, 1),
+            VersionItem(version="1.2", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1.2",
+            date(2021, 1, 1),
+            VersionItem(version="1.2", eol=date(2021, 1, 1)),
+        ),
+        (
+            " 1.2  ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2", eol=date(2021, 1, 1)),
+        ),
+        (
+            " 1.2 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version 1.2 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1.2", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version1.2(LTS)",
+            date(2021, 1, 1),
+            VersionItem(version="1.2", eol=date(2021, 1, 1)),
+        ),
+        # major
+        ("1", date(2021, 1, 1), VersionItem(version="1", eol=date(2021, 1, 1))),
+        (
+            "1*",
+            date(2021, 1, 1),
+            VersionItem(version="1", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1*",
+            date(2021, 1, 1),
+            VersionItem(version="1", eol=date(2021, 1, 1)),
+        ),
+        (
+            "*1",
+            date(2021, 1, 1),
+            VersionItem(version="1", eol=date(2021, 1, 1)),
+        ),
+        (
+            " 1  ",
+            date(2021, 1, 1),
+            VersionItem(version="1", eol=date(2021, 1, 1)),
+        ),
+        (
+            " 1 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version 1 (LTS) ",
+            date(2021, 1, 1),
+            VersionItem(version="1", eol=date(2021, 1, 1)),
+        ),
+        (
+            "Version1(LTS)",
+            date(2021, 1, 1),
+            VersionItem(version="1", eol=date(2021, 1, 1)),
+        ),
+        # msk special "version numbers"
+        (
+            "2.8.2-tiered",
+            date(2024, 2, 29),
+            VersionItem(version="2.8.2-tiered", eol=date(2024, 2, 29)),
+        ),
+        (
+            "3.7.x",
+            date(2026, 2, 28),
+            VersionItem(version="3.7.x", eol=date(2026, 2, 28)),
+        ),
     ],
 )
 def test_version_item(version: str, eol: date, expected: VersionItem) -> None:
     assert VersionItem(version=version, eol=eol) == expected
+
+
+def test_version_item_msk() -> None:
+    assert VersionItem(version="3.7.x", eol=date(2026, 2, 28)).version == "3.7.x"
+    assert (
+        VersionItem(version="2.8.1.4-tiered", eol=date(2026, 2, 28)).version
+        == "2.8.1.4-tiered"
+    )
+
+
+@pytest.mark.parametrize(
+    "version1, version2",
+    [
+        (
+            VersionItem(version="1", eol=date(2026, 2, 28)),
+            VersionItem(version="1", eol=date(2026, 2, 28)),
+        ),
+        (
+            VersionItem(version="1.2", eol=date(2026, 2, 28)),
+            VersionItem(version="1.2", eol=date(2026, 2, 28)),
+        ),
+        (
+            VersionItem(version="1.2.3", eol=date(2026, 2, 28)),
+            VersionItem(version="1.2.3", eol=date(2026, 2, 28)),
+        ),
+        (
+            VersionItem(version="1.2.3.4", eol=date(2026, 2, 28)),
+            VersionItem(version="1.2.3.4", eol=date(2026, 2, 28)),
+        ),
+        (
+            VersionItem(version="3.7.x", eol=date(2026, 2, 28)),
+            VersionItem(version="3.7.x", eol=date(2026, 2, 28)),
+        ),
+        # different versions
+        pytest.param(
+            VersionItem(version="1", eol=date(2026, 2, 28)),
+            VersionItem(version="2", eol=date(2026, 2, 28)),
+            marks=pytest.mark.xfail(strict=True, raises=AssertionError),
+        ),
+        pytest.param(
+            VersionItem(version="1.1", eol=date(2026, 2, 28)),
+            VersionItem(version="1.2", eol=date(2026, 2, 28)),
+            marks=pytest.mark.xfail(strict=True, raises=AssertionError),
+        ),
+        pytest.param(
+            VersionItem(version="1.1.1", eol=date(2026, 2, 28)),
+            VersionItem(version="1.1.2", eol=date(2026, 2, 28)),
+            marks=pytest.mark.xfail(strict=True, raises=AssertionError),
+        ),
+        pytest.param(
+            VersionItem(version="1.2", eol=date(2026, 2, 28)),
+            VersionItem(version="1.2.x", eol=date(2026, 2, 28)),
+            marks=pytest.mark.xfail(strict=True, raises=AssertionError),
+        ),
+    ],
+)
+def test_version_item_compare(version1: VersionItem, version2: VersionItem) -> None:
+    assert version1 == version2

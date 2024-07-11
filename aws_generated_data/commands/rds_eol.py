@@ -59,9 +59,22 @@ def engine_with_url(value: str) -> Engine:
 def parse_aws_release_calendar(page: str) -> list[CalItem]:
     items: list[CalItem] = []
     soup = BeautifulSoup(page, "html5lib")
-    # the first table is the one we want
-    version_table = soup.find("table")
-    if not version_table:
+
+    if not (
+        minor_version_section := soup.find(
+            lambda tag: tag.get("id", "")
+            in {
+                # IDs from header minor version headings
+                "aurorapostgresql.minor.versions.supported",
+                "PostgreSQL.Concepts.VersionMgmt.Supported",
+                "MySQL.Concepts.VersionMgmt.Supported",
+            }
+        )
+    ):
+        raise RuntimeError("Failed to find minor version section")
+
+    # the first table in the minor version section is the one we want
+    if not (version_table := minor_version_section.find_next("table")):
         raise RuntimeError("Failed to find version table")
 
     for row in version_table.find_all("tr"):  # type: ignore
@@ -70,6 +83,8 @@ def parse_aws_release_calendar(page: str) -> list[CalItem]:
             with contextlib.suppress(ValueError):
                 items.append((cols[0].text.strip(), parse_date(cols[3].text.strip())))
 
+    if not items:
+        raise RuntimeError("Failed to find any version items")
     return items
 
 
