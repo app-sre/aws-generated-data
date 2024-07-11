@@ -21,6 +21,8 @@ EOLType = TypeVar("EOLType", bound="HasEOL")
 ItemType = TypeVar("ItemType")
 Root = RootModel[Sequence[Any]]
 
+VERSION_PATTERN = re.compile(r"(?<!\d)(\d+(\.\d+){0,3})(?!\d)")
+
 
 class HasEOL(Protocol):
     eol: date
@@ -32,7 +34,13 @@ class VersionItem(BaseModel):
 
     @field_validator("version", mode="before")
     def version_remove_asterisk(cls, value: str) -> str:
-        return value.strip(" ").strip("*")
+        # special msk version handling
+        if value.endswith("-tiered") or value.endswith(".x"):
+            return value
+
+        if not (match := VERSION_PATTERN.search(value)):
+            raise ValueError(f"Invalid version: {value}")
+        return match.group()
 
     def __lt__(self, other: Any) -> bool:
         if not isinstance(other, VersionItem):
