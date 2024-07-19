@@ -141,13 +141,13 @@
   eol: 2025-03-31
   version: 8.0.35
 - engine: mysql
-  eol: 2024-09-30
+  eol: 2025-03-31
   version: 8.0.34
 - engine: mysql
-  eol: 2024-09-30
+  eol: 2025-03-31
   version: 8.0.33
 - engine: mysql
-  eol: 2024-09-30
+  eol: 2025-03-31
   version: 8.0.32
 - engine: mysql
   eol: 2024-03-29
