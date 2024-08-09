@@ -1,6 +1,9 @@
 ---
 - engine: postgres
   eol: 2025-09-30
+  version: '16.4'
+- engine: postgres
+  eol: 2025-09-30
   version: '16.3'
 - engine: postgres
   eol: 2025-09-30
@@ -8,6 +11,9 @@
 - engine: postgres
   eol: 2025-03-31
   version: '16.1'
+- engine: postgres
+  eol: 2025-09-30
+  version: '15.8'
 - engine: postgres
   eol: 2025-09-30
   version: '15.7'
@@ -49,6 +55,9 @@
   version: '14.3'
 - engine: postgres
   eol: 2025-09-30
+  version: '14.13'
+- engine: postgres
+  eol: 2025-09-30
   version: '14.12'
 - engine: postgres
   eol: 2025-09-30
@@ -67,6 +76,9 @@
   version: '13.7'
 - engine: postgres
   eol: 2025-09-30
+  version: '13.16'
+- engine: postgres
+  eol: 2025-09-30
   version: '13.15'
 - engine: postgres
   eol: 2025-09-30
@@ -83,6 +95,9 @@
 - engine: postgres
   eol: 2024-03-29
   version: '13.10'
+- engine: postgres
+  eol: 2025-09-30
+  version: '12.20'
 - engine: postgres
   eol: 2025-02-28
   version: '12.19'
@@ -183,83 +198,98 @@
   eol: 2024-01-16
   version: 5.7.37
 - engine: aurora-postgresql
-  eol: 2025-05-31
+  eol: 2025-10-31
+  version: '16.3'
+- engine: aurora-postgresql
+  eol: 2025-10-31
   version: '16.2'
 - engine: aurora-postgresql
-  eol: 2025-05-31
+  eol: 2025-10-31
   version: '16.1'
 - engine: aurora-postgresql
-  eol: 2025-05-31
+  eol: 2025-10-31
+  version: '15.7'
+- engine: aurora-postgresql
+  eol: 2025-10-31
   version: '15.6'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '15.5'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '15.4'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '15.3'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '15.2'
 - engine: aurora-postgresql
   eol: 2024-09-30
   version: '15.1'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '14.9'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '14.8'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '14.7'
 - engine: aurora-postgresql
   eol: 2027-02-28
   version: '14.6'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '14.5'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '14.4'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '14.3'
 - engine: aurora-postgresql
-  eol: 2025-05-31
+  eol: 2025-10-31
+  version: '14.12'
+- engine: aurora-postgresql
+  eol: 2025-10-31
   version: '14.11'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '14.10'
 - engine: aurora-postgresql
   eol: 2026-02-28
   version: '13.9'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '13.8'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '13.7'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-10-31
+  version: '13.15'
+- engine: aurora-postgresql
+  eol: 2025-10-31
   version: '13.14'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '13.13'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '13.12'
 - engine: aurora-postgresql
-  eol: 2025-02-28
+  eol: 2025-05-31
   version: '13.11'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '13.10'
 - engine: aurora-postgresql
   eol: 2025-02-28
   version: '12.9'
+- engine: aurora-postgresql
+  eol: 2025-02-28
+  version: '12.19'
 - engine: aurora-postgresql
   eol: 2025-02-28
   version: '12.18'
@@ -273,16 +303,16 @@
   eol: 2025-02-28
   version: '12.15'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '12.14'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '12.13'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '12.12'
 - engine: aurora-postgresql
-  eol: 2024-09-30
+  eol: 2024-10-31
   version: '12.11'
 - engine: aurora-postgresql
   eol: 2024-02-29
