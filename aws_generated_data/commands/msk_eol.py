@@ -1,7 +1,7 @@
 import contextlib
 import logging
 from datetime import (
-    date,
+    UTC,
     datetime,
     timedelta,
 )
@@ -34,7 +34,7 @@ def parse_msk_release_calendar(page: str) -> list[CalItem]:
     if not version_table:
         raise RuntimeError("Failed to find version table")
 
-    for row in version_table.find_all("tr"):  # type: ignore
+    for row in version_table.find_all("tr"):  # type: ignore[union-attr]
         cols = row.find_all("td")
         if len(cols) == 3:  # noqa: PLR2004
             date_str = cols[2].text.strip()
@@ -90,6 +90,6 @@ def fetch(
 
     msk_items = filter_items(
         msk_items_dict.values(),
-        expired_date=date.today() - timedelta(days=clean_up_days),
+        expired_date=datetime.now(tz=UTC).date() - timedelta(days=clean_up_days),
     )
     write_output_file(output, sorted(msk_items, reverse=True))

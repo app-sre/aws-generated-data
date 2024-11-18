@@ -1,10 +1,15 @@
-FROM registry.access.redhat.com/ubi9/python-311
-USER 1000
-ENV NO_COLOR 1
-ENV VIRTUAL_ENV /opt/app-root
+FROM registry.access.redhat.com/ubi9/python-312
+COPY --from=ghcr.io/astral-sh/uv:0.5.2@sha256:ab5cd8c7946ae6a359a9aea9073b5effd311d40a65310380caae938a1abf55da /uv /bin/uv
 
-RUN pip install --upgrade pip && \
-    pip install poetry==1.8.3
-COPY --chown=1000 . .
-RUN poetry config virtualenvs.create false
-RUN poetry install --no-ansi
+ENV \
+    # use venv from ubi image
+    UV_PROJECT_ENVIRONMENT=$APP_ROOT \
+    # compile bytecode for faster startup
+    UV_COMPILE_BYTECODE="true" \
+    # disable uv cache. it doesn't make sense in a container
+    UV_NO_CACHE=true
+
+COPY --chown=1001 . .
+# Test lock file is up to date
+RUN uv lock --locked
+RUN uv sync --frozen --no-group dev

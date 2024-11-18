@@ -1,3 +1,4 @@
+# ruff: noqa: DTZ001
 from collections.abc import Callable
 from datetime import date
 from datetime import datetime as dt
@@ -20,7 +21,7 @@ from aws_generated_data.commands.rds_eol import (
 
 
 @pytest.mark.parametrize(
-    "fx_file, expected",
+    ("fx_file", "expected"),
     [
         (
             "postgresql-release-calendar.html",
@@ -144,10 +145,10 @@ def test_cli_rds_eol_fetch(tmp_path: Path, mocker: MockerFixture) -> None:
     output_file = tmp_path / "output.yaml"
     # Today is Women Ironman World Championship day in Kona, Hawaii
     date_mock = mocker.patch(
-        "aws_generated_data.commands.rds_eol.date",
+        "aws_generated_data.commands.rds_eol.datetime",
         autospec=True,
     )
-    date_mock.today.return_value = date(2023, 10, 14)
+    date_mock.now.return_value.date.return_value = date(2023, 10, 14)
     read_output_file_mock = mocker.patch(
         "aws_generated_data.commands.rds_eol.read_output_file",
         autospec=True,
