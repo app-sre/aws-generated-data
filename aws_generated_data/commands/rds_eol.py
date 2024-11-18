@@ -1,7 +1,7 @@
 import contextlib
 import logging
 from datetime import (
-    date,
+    UTC,
     datetime,
     timedelta,
 )
@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 class RdsItem(VersionItem):
     engine: str
 
-    def __lt__(self, other: Any) -> bool:
+    def __lt__(self, other: Any) -> bool:  # noqa: ANN401
         if not isinstance(other, RdsItem):
             return False
         return (self.engine, self.version) < (other.engine, other.version)
@@ -37,7 +37,7 @@ CalItem = tuple[str, datetime]
 
 
 class Engine:  # noqa: PLW1641
-    def __init__(self, value: str):
+    def __init__(self, value: str) -> None:
         self.name, self.url = value.split(":", maxsplit=1)
 
     def __str__(self) -> str:
@@ -46,7 +46,7 @@ class Engine:  # noqa: PLW1641
     def __repr__(self) -> str:
         return str(self)
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Engine):
             return False
         return (self.name, self.url) == (other.name, other.url)
@@ -77,7 +77,7 @@ def parse_aws_release_calendar(page: str) -> list[CalItem]:
     if not (version_table := minor_version_section.find_next("table")):
         raise RuntimeError("Failed to find version table")
 
-    for row in version_table.find_all("tr"):  # type: ignore
+    for row in version_table.find_all("tr"):  # type: ignore[union-attr]
         cols = row.find_all("td")
         if len(cols) == 4:  # noqa: PLR2004
             with contextlib.suppress(ValueError):
@@ -128,10 +128,10 @@ def fetch(
     for engine in engines:
         log.info(f"Processing {engine} ...")
         for item in get_rds_eol_data(engine):
-            rds_items_dict[(item.engine, item.version)] = item
+            rds_items_dict[item.engine, item.version] = item
 
     rds_items = filter_items(
         rds_items_dict.values(),
-        expired_date=date.today() - timedelta(days=clean_up_days),
+        expired_date=datetime.now(tz=UTC).date() - timedelta(days=clean_up_days),
     )
     write_output_file(output, sorted(rds_items, reverse=True))

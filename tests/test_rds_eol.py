@@ -1,3 +1,4 @@
+# ruff: noqa: DTZ001
 from collections.abc import Callable
 from datetime import date
 from datetime import datetime as dt
@@ -20,7 +21,7 @@ from aws_generated_data.commands.rds_eol import (
 
 
 @pytest.mark.parametrize(
-    "fx_file, expected",
+    ("fx_file", "expected"),
     [
         (
             "postgresql-release-calendar.html",

@@ -1,3 +1,4 @@
+# ruff: noqa: DTZ007
 import calendar
 import logging
 import re
@@ -33,16 +34,17 @@ class VersionItem(BaseModel):
     eol: date
 
     @field_validator("version", mode="before")
+    @classmethod
     def version_remove_asterisk(cls, value: str) -> str:
         # special msk version handling
-        if value.endswith("-tiered") or value.endswith(".x"):
+        if value.endswith(("-tiered", ".x")):
             return value
 
         if not (match := VERSION_PATTERN.search(value)):
             raise ValueError(f"Invalid version: {value}")
         return match.group()
 
-    def __lt__(self, other: Any) -> bool:
+    def __lt__(self, other: Any) -> bool:  # noqa: ANN401
         if not isinstance(other, VersionItem):
             return False
         return self.version < other.version
@@ -90,4 +92,4 @@ def filter_items(items: Iterable[EOLType], expired_date: date) -> list[EOLType]:
 
 def http_get(url: str) -> str:
     # AWS blocks Python requests. Use curl's user-agent to bypass the captcha check.
-    return requests.get(url, headers={"user-agent": "curl/8.6.0"}).text
+    return requests.get(url, headers={"user-agent": "curl/8.6.0"}, timeout=60).text

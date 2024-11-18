@@ -1,4 +1,5 @@
 import logging
+from typing import Annotated
 
 import typer
 from rich.logging import RichHandler
@@ -11,7 +12,7 @@ app.add_typer(msk_eol.app, name="msk-eol", help="MSK End of Life related command
 
 
 @app.callback(no_args_is_help=True)
-def main(debug: bool = typer.Option(False, help="Enable debug")) -> None:
+def main(*, debug: Annotated[bool, typer.Option(help="Enable debug")] = False) -> None:
     logging.basicConfig(
         level="DEBUG" if debug else "INFO",
         format="%(name)-20s: %(message)s",

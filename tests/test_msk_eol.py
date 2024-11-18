@@ -1,3 +1,4 @@
+# ruff: noqa: DTZ001
 from collections.abc import Callable
 from datetime import date
 from datetime import datetime as dt
@@ -18,7 +19,7 @@ from aws_generated_data.utils import VersionItem
 
 
 @pytest.mark.parametrize(
-    "fx_file, expected",
+    ("fx_file", "expected"),
     [
         (
             "supported-kafka-versions.html",

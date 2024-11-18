@@ -1,3 +1,4 @@
+# ruff: noqa: DTZ001
 from datetime import date
 from datetime import datetime as dt
 from pathlib import Path
@@ -18,7 +19,7 @@ from aws_generated_data.utils import (
 
 
 @pytest.mark.parametrize(
-    "date_str, expected",
+    ("date_str", "expected"),
     [
         ("10 January 2021", dt(2021, 1, 10)),
         ("January 10, 2021", dt(2021, 1, 10)),
@@ -42,7 +43,7 @@ class EolItem(BaseModel):
 
 
 @pytest.mark.parametrize(
-    "items, expired_date, expected",
+    ("items", "expired_date", "expected"),
     [
         (
             [
@@ -72,7 +73,7 @@ RDS_ITEMS = [
 
 
 @pytest.mark.parametrize(
-    "output, expected",
+    ("output", "expected"),
     [
         # output does not exist yet
         (None, []),
@@ -104,7 +105,7 @@ def test_write_output_file(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize(
-    "version, eol, expected",
+    ("version", "eol", "expected"),
     [
         # major.minor.patch.special
         (
@@ -284,7 +285,7 @@ def test_version_item_msk() -> None:
 
 
 @pytest.mark.parametrize(
-    "version1, version2",
+    ("version1", "version2"),
     [
         (
             VersionItem(version="1", eol=date(2026, 2, 28)),
