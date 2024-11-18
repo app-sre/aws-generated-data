@@ -1,31 +1,31 @@
-DIRS := aws_generated_data
-POETRY_RUN := poetry run --no-ansi --no-interaction
+CONTAINER_ENGINE ?= $(shell which podman >/dev/null 2>&1 && echo podman || echo docker)
 
-format:
-	$(POETRY_RUN) ruff check
-	$(POETRY_RUN) ruff format
 .PHONY: format
+format:
+	uv run ruff check
+	uv run ruff format
 
 build-test-image:
-	docker build -t agd-test .
+	$(CONTAINER_ENGINE) build -t agd-test .
 
-pr-check: build-test-image
-	docker run --rm agd-test make test
 .PHONY: pr-check
+pr-check: build-test-image
+	$(CONTAINER_ENGINE) run --rm agd-test make test
 
-test:
-	$(POETRY_RUN) ruff check --no-fix
-	$(POETRY_RUN) ruff format --check
-	$(POETRY_RUN) pytest -vv
-	$(POETRY_RUN) mypy $(DIRS)
 .PHONY: test
+test:
+	uv run ruff check --no-fix
+	uv run ruff format --check
+	uv run pytest -vv
+	uv run mypy
 
+.PHONY: ci-run
 ci-run: build-test-image
 	# Allow docker to write to output directory
 	chmod a+w output/*
 
 	# Run agd rds-eol
-	docker run --rm \
+	$(CONTAINER_ENGINE) run --rm \
 		-v '$(PWD)/output':/output:z \
 		-e AGD_RDS_EOL_ENGINES='$(AGD_RDS_EOL_ENGINES)' \
 		-e AGD_RDS_EOL_OUTPUT='/output/$(AGD_RDS_EOL_OUTPUT)' \
@@ -40,13 +40,12 @@ ci-run: build-test-image
 		git add output/*; \
 		git commit -m "Update data"; \
 	fi
-.PHONY: ci-run
 
 .PHONY: run
 run: run-rds-eol run-msk-eol
 
 run-rds-eol:
-	$(POETRY_RUN) agd rds-eol fetch
+	uv run agd rds-eol fetch
 
 run-msk-eol:
-	$(POETRY_RUN) agd msk-eol fetch
+	uv run agd msk-eol fetch

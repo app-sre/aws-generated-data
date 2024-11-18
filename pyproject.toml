@@ -1,42 +1,114 @@
-[tool.poetry]
+[project]
 name = "aws-generated-data"
-version = "0.1.0"
+version = "0.2.0"
+requires-python = ">=3.11"
 description = ""
-authors = ["Christian Assing <cassing@redhat.com>"]
-license = "MIT"
 readme = "README.md"
-packages = [{ include = "aws_generated_data" }]
+authors = [{ name = "Christian Assing", email = "cassing@redhat.com" }]
+dependencies = [
+    "beautifulsoup4 ~=4.12.3",
+    "html5lib ~=1.1",
+    "pydantic ~=2.9.2",
+    "pyyaml ~=6.0.2",
+    "requests ~=2.32.3",
+    "rich ~=13.9.4",
+    "typer ~=0.13.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-pydantic = "^2.3.0"
-typer = "^0.9.0"
-rich = "^13.5.2"
-pyyaml = "^6.0.1"
-requests = "^2.31.0"
-beautifulsoup4 = "^4.12.2"
-html5lib = "^1.1"
+[project.urls]
+homepage = "https://github.com/app-sre/aws-generated-data"
+repository = "https://github.com/app-sre/aws-generated-data"
+documentation = "https://github.com/app-sre/aws-generated-data"
 
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.5.1"
-pytest = "^7.4.2"
-types-pyyaml = "^6.0.12.11"
-types-requests = "^2.31.0.2"
-types-beautifulsoup4 = "^4.12.0.6"
-requests-mock = "^1.11.0"
-pytest-mock = "^3.11.1"
-ruff = "^0.5.1"
+[dependency-groups]
+dev = [
+    "mypy ~=1.13",
+    "pytest ~=8.3.3",
+    "pytest-mock ~=3.14.0",
+    "requests-mock ~=1.12.1",
+    "ruff ~=0.7.4",
+    "types-beautifulsoup4 ~=4.12.0",
+    "types-pyyaml ~=6.0.12",
+    "types-requests ~=2.32.0",
+]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
+[project.scripts]
 agd = 'aws_generated_data.__main__:app'
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["aws_generated_data"]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["aws_generated_data"]
+
+# Ruff configuration
+[tool.ruff]
+line-length = 88
+src = ["aws_generated_data"]
+extend-exclude = [
+    # exclude some common cache and tmp directories
+    ".local",
+    ".cache",
+    "tmp",
+]
+fix = true
+
+[tool.ruff.lint]
+preview = true
+select = ["ALL"]
+ignore = [
+    "CPY",     # Missing copyright header
+    "D100",    # Missing docstring in public module
+    "D101",    # Missing docstring in public class
+    "D102",    # Missing docstring in public method
+    "D103",    # Missing docstring in public function
+    "D104",    # Missing docstring in public package
+    "D105",    # Missing docstring in magic method
+    "D107",    # Missing docstring in __init__
+    "D203",    # 1 blank line required before class docstring
+    "D211",    # No blank lines allowed before class docstring
+    "D212",    # multi-line-summary-first-line
+    "D213",    # multi-line-summary-second-line
+    "D4",      # Doc string style
+    "E501",    # Line too long
+    "G004",    # Logging statement uses f-string
+    "PLR0904", # Too many public methods
+    "PLR0913", # Too many arguments
+    "PLR0917", # Too many positional arguments
+    "S101",    # Use of assert detected. Pytest uses assert
+    "S404",    # subprocess import
+    "EM101",   # Exception must not use a string literal, assign to variable first
+    "EM102",   # Exception must not use an f-string literal, assign to variable first
+    "TRY003",  # Avoid specifying long messages outside the exception class
+    "TRY300",  # try-consider-else
+    # pydoclint
+    "DOC",
+    # May conflict with the formatter, https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "W191",
+    "E111",
+    "E114",
+    "E117",
+    "D206",
+    "D300",
+    "Q",
+    "COM812",
+    "COM819",
+    "ISC001",
+]
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint.isort]
+known-first-party = ["aws_generated_data"]
+
+# Mypy configuration
 [tool.mypy]
-plugins = "pydantic.mypy"
-enable_error_code = "truthy-bool, redundant-expr"
+files = ["aws_generated_data", "tests"]
+enable_error_code = ["truthy-bool", "redundant-expr"]
 no_implicit_optional = true
 check_untyped_defs = true
 warn_unused_ignores = true
@@ -47,39 +119,3 @@ disallow_incomplete_defs = true
 [[tool.mypy.overrides]]
 module = ["pyquery.*"]
 ignore_missing_imports = true
-
-[tool.ruff]
-line-length = 88
-target-version = 'py311'
-required-version = "0.5.1"
-src = ["aws_generated_data", "tests"]
-extend-exclude = [".local", ".cache"]
-fix = true
-
-[tool.ruff.lint]
-preview = true
-# defaults are ["E4", "E7", "E9", "F"]
-extend-select = [
-    # flake8 default rules
-    "E1", # preview rule
-    "E2", # preview rule
-    "W",
-    # isort
-    "I",
-    # pylint
-    "PL",
-    # pyupgrade
-    "UP",
-    # flake8-simply
-    "SIM",
-    # flake8-bugbear
-    "B",
-    # flake8-comprehensions
-    "C4",
-]
-
-[tool.ruff.format]
-preview = true
-
-[tool.ruff.lint.isort]
-known-first-party = ["aws_generated_data"]
