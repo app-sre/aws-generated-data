@@ -357,7 +357,7 @@
   eol: 2025-02-28
   version: '12.9'
 - engine: aurora-postgresql
-  eol: 2026-05-31
+  eol: 2025-02-28
   version: '12.22'
 - engine: aurora-postgresql
   eol: 2025-02-28
