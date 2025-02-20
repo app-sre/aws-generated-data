@@ -184,6 +184,9 @@
   version: '11.21'
 - engine: mysql
   eol: 2026-03-31
+  version: 8.4.4
+- engine: mysql
+  eol: 2026-03-31
   version: 8.4.3
 - engine: mysql
   eol: 2026-03-31
