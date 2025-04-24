@@ -152,6 +152,9 @@
 - engine: postgres
   eol: 2025-02-28
   version: '12.15'
+- engine: postgres
+  eol: 2024-02-29
+  version: '11.22'
 - engine: mysql
   eol: 2026-09-30
   version: 8.4.5
@@ -350,3 +353,9 @@
 - engine: aurora-postgresql
   eol: 2024-11-15
   version: '12.11'
+- engine: aurora-postgresql
+  eol: 2024-02-29
+  version: '11.9'
+- engine: aurora-postgresql
+  eol: 2024-02-29
+  version: '11.21'
