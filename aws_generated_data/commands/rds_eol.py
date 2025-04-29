@@ -119,7 +119,7 @@ def fetch(
             help="Remove items older than this number of days",
             envvar="AGD_RDS_CLEAN_UP_DAYS",
         ),
-    ] = 365,
+    ] = 1095,
 ) -> None:
     """Fetch RDS EOL data from AWS and saves it to a file."""
     rds_items_dict = {
