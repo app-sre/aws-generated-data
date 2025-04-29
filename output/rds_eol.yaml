@@ -96,7 +96,7 @@
   eol: 2025-03-31
   version: '14.10'
 - engine: postgres
-  eol: 2026-03-31
+  eol: 2026-02-28
   version: '13.20'
 - engine: postgres
   eol: 2026-02-28
@@ -279,7 +279,7 @@
   eol: 2024-11-15
   version: '13.7'
 - engine: aurora-postgresql
-  eol: 2026-11-30
+  eol: 2026-02-28
   version: '13.20'
 - engine: aurora-postgresql
   eol: 2026-02-28
