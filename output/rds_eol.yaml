@@ -150,6 +150,9 @@
   eol: 2025-02-28
   version: '12.15'
 - engine: mysql
+  eol: 2026-09-30
+  version: 8.4.5
+- engine: mysql
   eol: 2026-03-31
   version: 8.4.4
 - engine: mysql
@@ -182,6 +185,9 @@
 - engine: mysql
   eol: 2024-09-30
   version: 8.0.30
+- engine: aurora-postgresql
+  eol: 2026-11-30
+  version: '17.4'
 - engine: aurora-postgresql
   eol: 2026-11-30
   version: '16.8'
