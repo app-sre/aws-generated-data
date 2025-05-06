@@ -6,10 +6,10 @@ from datetime import (
     timedelta,
 )
 from pathlib import Path
-from typing import Annotated, Any
+from typing import Annotated, Any, cast
 
 import typer
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from aws_generated_data.utils import (
     VersionItem,
@@ -74,14 +74,19 @@ def parse_aws_release_calendar(page: str) -> list[CalItem]:
         raise RuntimeError("Failed to find minor version section")
 
     # the first table in the minor version section is the one we want
-    if not (version_table := minor_version_section.find_next("table")):
+    if not (version_table := minor_version_section.find_all_next("table", limit=2)):
         raise RuntimeError("Failed to find version table")
 
-    for row in version_table.find_all("tr"):  # type: ignore[union-attr]
-        cols = row.find_all("td")
-        if len(cols) == 4:  # noqa: PLR2004
-            with contextlib.suppress(ValueError):
-                items.append((cols[0].text.strip(), parse_date(cols[3].text.strip())))
+    for table in version_table:
+        table = cast(Tag, table)
+        for row in table.find_all("tr"):
+            cols = row.find_all("td")
+            if len(cols) == 4:  # noqa: PLR2004
+                with contextlib.suppress(ValueError):
+                    items.append((
+                        cols[0].text.strip(),
+                        parse_date(cols[3].text.strip()),
+                    ))
 
     if not items:
         raise RuntimeError("Failed to find any version items")
