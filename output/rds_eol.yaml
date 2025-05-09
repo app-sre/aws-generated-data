@@ -1,5 +1,8 @@
 ---
 - engine: postgres
+  eol: 2026-09-30
+  version: '17.5'
+- engine: postgres
   eol: 2026-03-31
   version: '17.4'
 - engine: postgres
