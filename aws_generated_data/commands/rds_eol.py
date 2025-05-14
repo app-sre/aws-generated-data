@@ -77,13 +77,13 @@ def parse_aws_release_calendar(page: str, engine: Engine) -> list[CalItem]:
 
     # the first table in the minor version section is the one we want
     if not (
-        version_table := minor_version_section.find_all_next(
+        version_tables := minor_version_section.find_all_next(
             "table", limit=engine.table_limit
         )
     ):
         raise RuntimeError("Failed to find version table")
 
-    for table in version_table:
+    for table in version_tables:
         table = cast(Tag, table)
         for row in table.find_all("tr"):
             cols = row.find_all("td")
