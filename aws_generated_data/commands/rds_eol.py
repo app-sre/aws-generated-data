@@ -39,6 +39,18 @@ CalItem = tuple[str, datetime]
 class Engine:  # noqa: PLW1641
     def __init__(self, value: str) -> None:
         self.name, self.url = value.split(":", maxsplit=1)
+        match self.name:
+            case "mysql":
+                self.section_id = "MySQL.Concepts.VersionMgmt.Supported"
+                self.table_limit = 2
+            case "postgres":
+                self.section_id = "PostgreSQL.Concepts.VersionMgmt.Supported"
+                self.table_limit = 1
+            case "aurora-postgresql":
+                self.section_id = "aurorapostgresql.minor.versions.supported"
+                self.table_limit = 1
+            case _:
+                raise ValueError(f"Unsupported engine name: {self.name}")
 
     def __str__(self) -> str:
         return f"<Engine: {self.name=} {self.url=}>"
@@ -56,21 +68,11 @@ def engine_with_url(value: str) -> Engine:
     return Engine(value)
 
 
-def parse_aws_release_calendar(page: str) -> list[CalItem]:
+def parse_aws_release_calendar(page: str, engine: Engine) -> list[CalItem]:
     items: list[CalItem] = []
     soup = BeautifulSoup(page, "html5lib")
 
-    if not (
-        minor_version_section := soup.find(
-            lambda tag: tag.get("id", "")
-            in {
-                # IDs from header minor version headings
-                "aurorapostgresql.minor.versions.supported",
-                "PostgreSQL.Concepts.VersionMgmt.Supported",
-                "MySQL.Concepts.VersionMgmt.Supported",
-            }
-        )
-    ):
+    if not (minor_version_section := soup.find(id=engine.section_id)):
         raise RuntimeError("Failed to find minor version section")
 
     # the first table in the minor version section is the one we want
@@ -97,7 +99,7 @@ def get_rds_eol_data(engine: Engine) -> list[RdsItem]:
     version_page = http_get(engine.url)
     return [
         RdsItem(engine=engine.name, version=version, eol=d.date())
-        for version, d in parse_aws_release_calendar(version_page)
+        for version, d in parse_aws_release_calendar(version_page, engine)
     ]
 
 

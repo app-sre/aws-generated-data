@@ -21,7 +21,7 @@ from aws_generated_data.commands.rds_eol import (
 
 
 @pytest.mark.parametrize(
-    ("fx_file", "expected"),
+    ("fx_file", "expected", "engine_name"),
     [
         (
             "postgresql-release-calendar.html",
@@ -63,6 +63,7 @@ from aws_generated_data.commands.rds_eol import (
                 ("11.22-RDS.20240509*", dt(2025, 9, 30, 0, 0)),
                 ("11.22-RDS.20240418*", dt(2025, 9, 30, 0, 0)),
             ],
+            "postgres",
         ),
         (
             "mysql-release-calendar.html",
@@ -74,6 +75,7 @@ from aws_generated_data.commands.rds_eol import (
                 ("8.0.39", dt(2025, 9, 30, 0, 0)),
                 ("8.0.37", dt(2025, 9, 30, 0, 0)),
             ],
+            "mysql",
         ),
         (
             "aurora-postgresql-release-calendar.html",
@@ -116,13 +118,15 @@ from aws_generated_data.commands.rds_eol import (
                 ("11.21*", dt(2024, 2, 29, 0, 0)),
                 ("11.9* (LTS)", dt(2024, 2, 29, 0, 0)),
             ],
+            "aurora-postgresql",
         ),
     ],
 )
 def test_parse_aws_release_calendar(
-    fx: Callable[[str], str], fx_file: str, expected: list[CalItem]
+    fx: Callable[[str], str], fx_file: str, expected: list[CalItem], engine_name: str
 ) -> None:
-    calendar_items = parse_aws_release_calendar(fx(fx_file))
+    engine = Engine(f"{engine_name}:https://dummy")
+    calendar_items = parse_aws_release_calendar(fx(fx_file), engine)
     assert calendar_items == expected
 
 
@@ -138,7 +142,7 @@ def test_get_rds_eol_data(
     assert get_rds_eol_data(Engine("mysql:https://example.com")) == [
         RdsItem(engine="mysql", version="1.2.3", eol=date(2021, 1, 1))
     ]
-    m.assert_called_once_with("data")
+    m.assert_called_once_with("data", Engine("mysql:https://example.com"))
 
 
 #
