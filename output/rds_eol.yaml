@@ -195,7 +195,7 @@
   eol: 2024-03-29
   version: '12.11'
 - engine: postgres
-  eol: 2025-09-30
+  eol: 2024-02-29
   version: '11.22'
 - engine: mysql
   eol: 2026-09-30
