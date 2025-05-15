@@ -6,10 +6,10 @@ from datetime import (
     timedelta,
 )
 from pathlib import Path
-from typing import Annotated, Any
+from typing import Annotated, Any, cast
 
 import typer
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from aws_generated_data.utils import (
     VersionItem,
@@ -39,6 +39,18 @@ CalItem = tuple[str, datetime]
 class Engine:  # noqa: PLW1641
     def __init__(self, value: str) -> None:
         self.name, self.url = value.split(":", maxsplit=1)
+        match self.name:
+            case "mysql":
+                self.section_id = "MySQL.Concepts.VersionMgmt.Supported"
+                self.table_limit = 2
+            case "postgres":
+                self.section_id = "PostgreSQL.Concepts.VersionMgmt.Supported"
+                self.table_limit = 1
+            case "aurora-postgresql":
+                self.section_id = "aurorapostgresql.minor.versions.supported"
+                self.table_limit = 1
+            case _:
+                raise ValueError(f"Unsupported engine name: {self.name}")
 
     def __str__(self) -> str:
         return f"<Engine: {self.name=} {self.url=}>"
@@ -56,32 +68,31 @@ def engine_with_url(value: str) -> Engine:
     return Engine(value)
 
 
-def parse_aws_release_calendar(page: str) -> list[CalItem]:
+def parse_aws_release_calendar(page: str, engine: Engine) -> list[CalItem]:
     items: list[CalItem] = []
     soup = BeautifulSoup(page, "html5lib")
 
-    if not (
-        minor_version_section := soup.find(
-            lambda tag: tag.get("id", "")
-            in {
-                # IDs from header minor version headings
-                "aurorapostgresql.minor.versions.supported",
-                "PostgreSQL.Concepts.VersionMgmt.Supported",
-                "MySQL.Concepts.VersionMgmt.Supported",
-            }
-        )
-    ):
+    if not (minor_version_section := soup.find(id=engine.section_id)):
         raise RuntimeError("Failed to find minor version section")
 
     # the first table in the minor version section is the one we want
-    if not (version_table := minor_version_section.find_next("table")):
+    if not (
+        version_tables := minor_version_section.find_all_next(
+            "table", limit=engine.table_limit
+        )
+    ):
         raise RuntimeError("Failed to find version table")
 
-    for row in version_table.find_all("tr"):  # type: ignore[union-attr]
-        cols = row.find_all("td")
-        if len(cols) == 4:  # noqa: PLR2004
-            with contextlib.suppress(ValueError):
-                items.append((cols[0].text.strip(), parse_date(cols[3].text.strip())))
+    for table in version_tables:
+        table = cast(Tag, table)
+        for row in table.find_all("tr"):
+            cols = row.find_all("td")
+            if len(cols) == 4:  # noqa: PLR2004
+                with contextlib.suppress(ValueError):
+                    items.append((
+                        cols[0].text.strip(),
+                        parse_date(cols[3].text.strip()),
+                    ))
 
     if not items:
         raise RuntimeError("Failed to find any version items")
@@ -92,7 +103,7 @@ def get_rds_eol_data(engine: Engine) -> list[RdsItem]:
     version_page = http_get(engine.url)
     return [
         RdsItem(engine=engine.name, version=version, eol=d.date())
-        for version, d in parse_aws_release_calendar(version_page)
+        for version, d in parse_aws_release_calendar(version_page, engine)
     ]
 
 
@@ -119,7 +130,7 @@ def fetch(
             help="Remove items older than this number of days",
             envvar="AGD_RDS_CLEAN_UP_DAYS",
         ),
-    ] = 365,
+    ] = 1095,
 ) -> None:
     """Fetch RDS EOL data from AWS and saves it to a file."""
     rds_items_dict = {

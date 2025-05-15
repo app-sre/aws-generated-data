@@ -60,6 +60,9 @@
   eol: 2024-06-30
   version: '15.3'
 - engine: postgres
+  eol: 2024-03-29
+  version: '15.2'
+- engine: postgres
   eol: 2026-03-31
   version: '15.12'
 - engine: postgres
@@ -74,6 +77,21 @@
 - engine: postgres
   eol: 2024-06-30
   version: '14.8'
+- engine: postgres
+  eol: 2024-03-29
+  version: '14.7'
+- engine: postgres
+  eol: 2024-03-29
+  version: '14.6'
+- engine: postgres
+  eol: 2024-03-29
+  version: '14.5'
+- engine: postgres
+  eol: 2024-03-29
+  version: '14.4'
+- engine: postgres
+  eol: 2024-03-29
+  version: '14.3'
 - engine: postgres
   eol: 2026-03-31
   version: '14.17'
@@ -98,6 +116,15 @@
 - engine: postgres
   eol: 2025-03-31
   version: '14.10'
+- engine: postgres
+  eol: 2024-03-29
+  version: '13.9'
+- engine: postgres
+  eol: 2024-03-29
+  version: '13.8'
+- engine: postgres
+  eol: 2024-03-29
+  version: '13.7'
 - engine: postgres
   eol: 2026-02-28
   version: '13.20'
@@ -129,6 +156,9 @@
   eol: 2025-03-31
   version: '13.11'
 - engine: postgres
+  eol: 2024-03-29
+  version: '13.10'
+- engine: postgres
   eol: 2025-02-28
   version: '12.22'
 - engine: postgres
@@ -152,6 +182,21 @@
 - engine: postgres
   eol: 2025-02-28
   version: '12.15'
+- engine: postgres
+  eol: 2024-03-29
+  version: '12.14'
+- engine: postgres
+  eol: 2024-03-29
+  version: '12.13'
+- engine: postgres
+  eol: 2024-03-29
+  version: '12.12'
+- engine: postgres
+  eol: 2024-03-29
+  version: '12.11'
+- engine: postgres
+  eol: 2025-09-30
+  version: '11.22'
 - engine: mysql
   eol: 2026-09-30
   version: 8.4.5
@@ -161,6 +206,12 @@
 - engine: mysql
   eol: 2026-03-31
   version: 8.4.3
+- engine: mysql
+  eol: 2026-09-30
+  version: 8.0.42
+- engine: mysql
+  eol: 2026-03-31
+  version: 8.0.41
 - engine: mysql
   eol: 2026-03-31
   version: 8.0.40
@@ -186,8 +237,14 @@
   eol: 2025-03-31
   version: 8.0.32
 - engine: mysql
+  eol: 2024-03-29
+  version: 8.0.31
+- engine: mysql
   eol: 2024-09-30
   version: 8.0.30
+- engine: mysql
+  eol: 2024-03-29
+  version: 8.0.28
 - engine: aurora-postgresql
   eol: 2026-11-30
   version: '17.4'
@@ -350,3 +407,9 @@
 - engine: aurora-postgresql
   eol: 2024-11-15
   version: '12.11'
+- engine: aurora-postgresql
+  eol: 2024-02-29
+  version: '11.9'
+- engine: aurora-postgresql
+  eol: 2024-02-29
+  version: '11.21'
