@@ -228,10 +228,10 @@
   eol: 2026-03-31
   version: 8.0.40
 - engine: mysql
-  eol: 2025-09-30
+  eol: 2025-10-31
   version: 8.0.39
 - engine: mysql
-  eol: 2025-09-30
+  eol: 2025-10-31
   version: 8.0.37
 - engine: mysql
   eol: 2025-03-31
