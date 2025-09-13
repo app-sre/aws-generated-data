@@ -210,7 +210,7 @@
   eol: 2024-02-29
   version: '11.22'
 - engine: mysql
-  eol: 2026-08-01
+  eol: 2026-09-30
   version: 8.4.6
 - engine: mysql
   eol: 2026-09-30
@@ -222,7 +222,7 @@
   eol: 2026-03-31
   version: 8.4.3
 - engine: mysql
-  eol: 2026-08-01
+  eol: 2026-07-31
   version: 8.0.43
 - engine: mysql
   eol: 2026-07-31
