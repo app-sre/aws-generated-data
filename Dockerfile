@@ -1,5 +1,6 @@
-FROM registry.access.redhat.com/ubi9/python-312
+FROM registry.access.redhat.com/ubi9/python-312 AS prod
 COPY --from=ghcr.io/astral-sh/uv:0.5.2@sha256:ab5cd8c7946ae6a359a9aea9073b5effd311d40a65310380caae938a1abf55da /uv /bin/uv
+COPY LICENSE /licenses/
 
 ENV \
     # use venv from ubi image
@@ -13,3 +14,10 @@ COPY --chown=1001 . .
 # Test lock file is up to date
 RUN uv lock --locked
 RUN uv sync --frozen --no-group dev
+
+FROM prod AS test
+# Install test dependencies
+RUN uv sync --frozen
+
+# Run tests
+RUN make test

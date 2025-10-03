@@ -5,13 +5,6 @@ format:
 	uv run ruff check
 	uv run ruff format
 
-build-test-image:
-	$(CONTAINER_ENGINE) build -t agd-test .
-
-.PHONY: pr-check
-pr-check: build-test-image
-	$(CONTAINER_ENGINE) run --rm agd-test make test
-
 .PHONY: test
 test:
 	uv run ruff check --no-fix
@@ -19,8 +12,12 @@ test:
 	uv run pytest -vv
 	uv run mypy
 
+.PHONY: build-image
+build-image:
+	$(CONTAINER_ENGINE) build -t agd-test --target prod .
+
 .PHONY: ci-run
-ci-run: build-test-image
+ci-run: build-image
 	# Allow docker to write to output directory
 	chmod a+w output/*
 
