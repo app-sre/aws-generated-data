@@ -84,7 +84,7 @@ def parse_aws_release_calendar(page: str, engine: Engine) -> list[CalItem]:
         raise RuntimeError("Failed to find version table")
 
     for table in version_tables:
-        table = cast(Tag, table)
+        table = cast("Tag", table)
         for row in table.find_all("tr"):
             cols = row.find_all("td")
             if len(cols) == 4:  # noqa: PLR2004

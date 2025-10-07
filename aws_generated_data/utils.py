@@ -67,7 +67,10 @@ def parse_date(date_str: str) -> datetime:
 
 def read_output_file(output: Path, item_type: type[ItemType]) -> list[ItemType]:
     try:
-        return [item_type(**item) for item in yaml.safe_load(output.read_text())]
+        return [
+            item_type(**item)
+            for item in yaml.safe_load(output.read_text(encoding="utf-8"))
+        ]
     except (TypeError, FileNotFoundError, ValidationError):
         log.warning(f"Failed to load {output}")
         return []
@@ -81,7 +84,8 @@ def write_output_file(output: Path, items: Sequence[Any]) -> None:
             explicit_start=True,
             indent=2,
             default_flow_style=False,
-        )
+        ),
+        encoding="utf-8",
     )
 
 
