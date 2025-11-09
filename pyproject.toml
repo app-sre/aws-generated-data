@@ -23,7 +23,7 @@ documentation = "https://github.com/app-sre/aws-generated-data"
 [dependency-groups]
 dev = [
     "mypy ~=1.13",
-    "pytest ~=8.4.2",
+    "pytest ~=9.0.0",
     "pytest-mock ~=3.15.1",
     "requests-mock ~=1.12.1",
     "ruff ~=0.14.0",
