@@ -628,14 +628,14 @@ wheels = [
 
 [[package]]
 name = "types-html5lib"
-version = "1.1.11.20251115"
+version = "1.1.11.20251117"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "types-webencodings" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/94/09/750cc27de71af3fd9eac061fd23e472730b49d8f06eb7d128a48e41549c7/types_html5lib-1.1.11.20251115.tar.gz", hash = "sha256:a4b666a06e496d7b2a9489dc9206f09a249fab7c62865ac6024cec24628b15d3", size = 17934, upload-time = "2025-11-15T03:00:17.107Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c8/f3/d9a1bbba7b42b5558a3f9fe017d967f5338cf8108d35991d9b15fdea3e0d/types_html5lib-1.1.11.20251117.tar.gz", hash = "sha256:1a6a3ac5394aa12bf547fae5d5eff91dceec46b6d07c4367d9b39a37f42f201a", size = 18100, upload-time = "2025-11-17T03:08:00.78Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/65/db/4d96bd8a069d3c3c3105e4a961a356cbac6aef162d25defb842bf8e50874/types_html5lib-1.1.11.20251115-py3-none-any.whl", hash = "sha256:6cee9173cdf4a3494174b84c8c78adffabb8a1d4f532da4edaad3ec1643fc6e7", size = 24074, upload-time = "2025-11-15T03:00:16.242Z" },
+    { url = "https://files.pythonhosted.org/packages/f0/ab/f5606db367c1f57f7400d3cb3bead6665ee2509621439af1b29c35ef6f9e/types_html5lib-1.1.11.20251117-py3-none-any.whl", hash = "sha256:2a3fc935de788a4d2659f4535002a421e05bea5e172b649d33232e99d4272d08", size = 24302, upload-time = "2025-11-17T03:07:59.996Z" },
 ]
 
 [[package]]
