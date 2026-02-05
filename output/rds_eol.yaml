@@ -240,6 +240,9 @@
   eol: 2024-02-29
   version: '11.22'
 - engine: mysql
+  eol: 2027-02-03
+  version: 8.4.8
+- engine: mysql
   eol: 2026-11-30
   version: 8.4.7
 - engine: mysql
@@ -254,6 +257,9 @@
 - engine: mysql
   eol: 2026-03-31
   version: 8.4.3
+- engine: mysql
+  eol: 2026-07-31
+  version: 8.0.45
 - engine: mysql
   eol: 2026-07-31
   version: 8.0.44
@@ -321,7 +327,7 @@
   eol: 2026-05-31
   version: '16.6'
 - engine: aurora-postgresql
-  eol: 2026-05-31
+  eol: 2026-03-31
   version: '16.4'
 - engine: aurora-postgresql
   eol: 2025-11-30
@@ -339,7 +345,7 @@
   eol: 2025-11-30
   version: '16.1'
 - engine: aurora-postgresql
-  eol: 2026-05-31
+  eol: 2026-03-31
   version: '15.8'
 - engine: aurora-postgresql
   eol: 2025-11-30
@@ -399,10 +405,10 @@
   eol: 2024-11-15
   version: '14.3'
 - engine: aurora-postgresql
-  eol: 2027-02-28
+  eol: 2027-07-31
   version: '14.20'
 - engine: aurora-postgresql
-  eol: 2027-02-28
+  eol: 2027-06-30
   version: '14.19'
 - engine: aurora-postgresql
   eol: 2026-12-31
@@ -414,7 +420,7 @@
   eol: 2026-05-31
   version: '14.15'
 - engine: aurora-postgresql
-  eol: 2026-05-31
+  eol: 2026-03-31
   version: '14.13'
 - engine: aurora-postgresql
   eol: 2025-11-30
