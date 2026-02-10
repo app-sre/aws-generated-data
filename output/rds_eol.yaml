@@ -327,7 +327,7 @@
   eol: 2026-05-31
   version: '16.6'
 - engine: aurora-postgresql
-  eol: 2026-03-31
+  eol: 2026-05-31
   version: '16.4'
 - engine: aurora-postgresql
   eol: 2025-11-30
@@ -345,7 +345,7 @@
   eol: 2025-11-30
   version: '16.1'
 - engine: aurora-postgresql
-  eol: 2026-03-31
+  eol: 2026-05-31
   version: '15.8'
 - engine: aurora-postgresql
   eol: 2025-11-30
@@ -420,7 +420,7 @@
   eol: 2026-05-31
   version: '14.15'
 - engine: aurora-postgresql
-  eol: 2026-03-31
+  eol: 2026-05-31
   version: '14.13'
 - engine: aurora-postgresql
   eol: 2025-11-30
