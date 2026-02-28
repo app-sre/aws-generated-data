@@ -1,7 +1,19 @@
 ---
 - engine: postgres
   eol: 2027-03-31
+  version: '18.3'
+- engine: postgres
+  eol: 2027-03-31
   version: '18.2'
+- engine: postgres
+  eol: 2027-03-31
+  version: '18.1'
+- engine: postgres
+  eol: 2027-03-31
+  version: '17.9'
+- engine: postgres
+  eol: 2027-03-31
+  version: '17.8'
 - engine: postgres
   eol: 2027-03-31
   version: '17.7'
@@ -49,6 +61,12 @@
   version: '16.2'
 - engine: postgres
   eol: 2027-03-31
+  version: '16.13'
+- engine: postgres
+  eol: 2027-03-31
+  version: '16.12'
+- engine: postgres
+  eol: 2027-03-31
   version: '16.11'
 - engine: postgres
   eol: 2026-09-30
@@ -80,6 +98,12 @@
 - engine: postgres
   eol: 2024-03-29
   version: '15.2'
+- engine: postgres
+  eol: 2027-03-31
+  version: '15.17'
+- engine: postgres
+  eol: 2027-03-31
+  version: '15.16'
 - engine: postgres
   eol: 2027-03-31
   version: '15.15'
@@ -119,6 +143,12 @@
 - engine: postgres
   eol: 2024-03-29
   version: '14.3'
+- engine: postgres
+  eol: 2027-03-31
+  version: '14.22'
+- engine: postgres
+  eol: 2027-03-31
+  version: '14.21'
 - engine: postgres
   eol: 2027-02-28
   version: '14.20'
