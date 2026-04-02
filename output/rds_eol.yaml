@@ -339,7 +339,7 @@
   eol: 2024-03-29
   version: 8.0.28
 - engine: aurora-postgresql
-  eol: 2027-07-31
+  eol: 2030-02-28
   version: '17.7'
 - engine: aurora-postgresql
   eol: 2027-06-30
