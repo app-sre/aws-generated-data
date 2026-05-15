@@ -10,7 +10,7 @@ dependencies = [
     "html5lib ~=1.1",
     "pydantic ~=2.13.0",
     "pyyaml ~=6.0.2",
-    "requests ~=2.33.0",
+    "requests ~=2.34.2",
     "rich ~=15.0.0",
     "typer ~=0.25.1",
 ]
