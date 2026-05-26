@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/python-312@sha256:d45384e6becad42c7e53f47146f51b661b9ad678636dcb3d2fb565a024c6c7ab AS prod
+FROM registry.access.redhat.com/ubi10/python-314-minimal@sha256:f7716c0cc029db494ccdeaa7f575b704431971758f97c20ed43544b1df2b1c9e AS prod
 COPY --from=ghcr.io/astral-sh/uv:0.11.16@sha256:440fd6477af86a2f1b38080c539f1672cd22acb1b1a47e321dba5158ab08864d /uv /bin/uv
 COPY LICENSE /licenses/
 
@@ -9,6 +9,10 @@ ENV \
     UV_COMPILE_BYTECODE="true" \
     # disable uv cache. it doesn't make sense in a container
     UV_NO_CACHE=true
+
+USER root
+RUN microdnf install -y make
+USER 1001
 
 COPY --chown=1001 . .
 # Test lock file is up to date
