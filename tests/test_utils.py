@@ -1,7 +1,7 @@
 # ruff: noqa: DTZ001
 from datetime import date
 from datetime import datetime as dt
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
 import yaml
@@ -16,6 +16,9 @@ from aws_generated_data.utils import (
     read_output_file,
     write_output_file,
 )
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 @pytest.mark.parametrize(

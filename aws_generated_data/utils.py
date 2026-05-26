@@ -4,12 +4,14 @@ import logging
 import re
 from collections.abc import Iterable, Sequence
 from datetime import date, datetime
-from pathlib import Path
-from typing import Any, Protocol, TypeVar
+from typing import TYPE_CHECKING, Any, Protocol, TypeVar
 
 import requests
 import yaml
 from pydantic import BaseModel, RootModel, ValidationError, field_validator
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 MONTH_YEAR = re.compile(r"\w+ \d+")
 DAY_MONTH_YEAR = re.compile(r"\d+ \w+ \d+")
@@ -65,13 +67,15 @@ def parse_date(date_str: str) -> datetime:
     raise ValueError(f"Unknown date format: {date_str}")
 
 
-def read_output_file(output: Path, item_type: type[ItemType]) -> list[ItemType]:
+def read_output_file[ItemType](
+    output: Path, item_type: type[ItemType]
+) -> list[ItemType]:
     try:
         return [
             item_type(**item)
             for item in yaml.safe_load(output.read_text(encoding="utf-8"))
         ]
-    except (TypeError, FileNotFoundError, ValidationError):
+    except TypeError, FileNotFoundError, ValidationError:
         log.warning(f"Failed to load {output}")
         return []
 
@@ -89,7 +93,9 @@ def write_output_file(output: Path, items: Sequence[Any]) -> None:
     )
 
 
-def filter_items(items: Iterable[EOLType], expired_date: date) -> list[EOLType]:
+def filter_items[EOLType: "HasEOL"](
+    items: Iterable[EOLType], expired_date: date
+) -> list[EOLType]:
     """Filter items that are not expired."""
     return [item for item in items if item.eol > expired_date]
 

@@ -1,7 +1,7 @@
 [project]
 name = "aws-generated-data"
 version = "0.2.0"
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 description = ""
 readme = "README.md"
 authors = [{ name = "Christian Assing", email = "cassing@redhat.com" }]
@@ -104,6 +104,21 @@ preview = true
 
 [tool.ruff.lint.isort]
 known-first-party = ["aws_generated_data"]
+
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-base-classes = [
+    "pydantic.BaseModel",
+    "pydantic.dataclasses.dataclass",
+    "dataclasses.dataclass",
+]
+runtime-evaluated-decorators = [
+    "pydantic.validate_call",
+    "typer.Typer.command",
+    "fastapi.FastAPI.get",
+    "fastapi.FastAPI.post",
+    "fastapi.FastAPI.put",
+    "fastapi.FastAPI.delete",
+]
 
 # Mypy configuration
 [tool.mypy]

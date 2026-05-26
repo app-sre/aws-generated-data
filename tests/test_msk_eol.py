@@ -1,12 +1,9 @@
 # ruff: noqa: DTZ001
-from collections.abc import Callable
 from datetime import date
 from datetime import datetime as dt
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 import pytest
-import requests_mock
-from pytest_mock import MockerFixture
 from typer.testing import CliRunner
 
 from aws_generated_data.cli import app
@@ -16,6 +13,13 @@ from aws_generated_data.commands.msk_eol import (
     parse_msk_release_calendar,
 )
 from aws_generated_data.utils import VersionItem
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+    from pathlib import Path
+
+    import requests_mock
+    from pytest_mock import MockerFixture
 
 
 @pytest.mark.parametrize(
