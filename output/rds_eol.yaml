@@ -156,7 +156,7 @@
   eol: 2024-03-29
   version: '14.3'
 - engine: postgres
-  eol: 2027-09-30
+  eol: 2027-02-28
   version: '14.23'
 - engine: postgres
   eol: 2027-03-31
