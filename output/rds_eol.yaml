@@ -468,13 +468,13 @@
   eol: 2024-11-15
   version: '14.3'
 - engine: aurora-postgresql
-  eol: 2027-09-30
+  eol: 2027-02-28
   version: '14.22'
 - engine: aurora-postgresql
-  eol: 2027-05-31
+  eol: 2027-02-28
   version: '14.20'
 - engine: aurora-postgresql
-  eol: 2027-04-30
+  eol: 2027-02-28
   version: '14.19'
 - engine: aurora-postgresql
   eol: 2026-12-31
