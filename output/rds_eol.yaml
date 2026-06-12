@@ -360,6 +360,9 @@
   eol: 2024-03-29
   version: 8.0.28
 - engine: aurora-postgresql
+  eol: 2027-11-30
+  version: '18.3'
+- engine: aurora-postgresql
   eol: 2027-09-30
   version: '17.9'
 - engine: aurora-postgresql
