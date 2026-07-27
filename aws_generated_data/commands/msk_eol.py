@@ -36,7 +36,7 @@ def parse_msk_release_calendar(page: str) -> list[CalItem]:
 
     for row in version_table.find_all("tr"):  # type: ignore[union-attr]
         cols = row.find_all("td")
-        if len(cols) == 3:  # noqa: PLR2004
+        if len(cols) == 3:  # ruff: ignore[magic-value-comparison]
             date_str = cols[2].text.strip()
             if date_str == "--":
                 continue

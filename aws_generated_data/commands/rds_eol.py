@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 class RdsItem(VersionItem):
     engine: str
 
-    def __lt__(self, other: Any) -> bool:  # noqa: ANN401
+    def __lt__(self, other: Any) -> bool:  # ruff: ignore[any-type]
         if not isinstance(other, RdsItem):
             return False
         return (self.engine, self.version) < (other.engine, other.version)
@@ -36,7 +36,7 @@ class RdsItem(VersionItem):
 CalItem = tuple[str, datetime]
 
 
-class Engine:  # noqa: PLW1641
+class Engine:  # ruff: ignore[eq-without-hash]
     def __init__(self, value: str) -> None:
         self.name, self.url = value.split(":", maxsplit=1)
         match self.name:
@@ -87,7 +87,7 @@ def parse_aws_release_calendar(page: str, engine: Engine) -> list[CalItem]:
         table = cast("Tag", table)
         for row in table.find_all("tr"):
             cols = row.find_all("td")
-            if len(cols) == 4:  # noqa: PLR2004
+            if len(cols) == 4:  # ruff: ignore[magic-value-comparison]
                 with contextlib.suppress(ValueError):
                     items.append((
                         cols[0].text.strip(),
