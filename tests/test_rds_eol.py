@@ -1,4 +1,4 @@
-# ruff: noqa: DTZ001
+# ruff: file-ignore[call-datetime-without-tzinfo]
 from datetime import date
 from datetime import datetime as dt
 from typing import TYPE_CHECKING

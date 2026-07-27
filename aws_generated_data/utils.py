@@ -1,4 +1,4 @@
-# ruff: noqa: DTZ007
+# ruff: file-ignore[call-datetime-strptime-without-zone]
 import calendar
 import logging
 import re
@@ -46,7 +46,7 @@ class VersionItem(BaseModel):
             raise ValueError(f"Invalid version: {value}")
         return match.group()
 
-    def __lt__(self, other: Any) -> bool:  # noqa: ANN401
+    def __lt__(self, other: Any) -> bool:  # ruff: ignore[any-type]
         if not isinstance(other, VersionItem):
             return False
         return self.version < other.version
