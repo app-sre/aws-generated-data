@@ -309,6 +309,9 @@
   eol: 2026-05-31
   version: 8.4.3
 - engine: mysql
+  eol: 2027-08-21
+  version: 8.4.11
+- engine: mysql
   eol: 2027-07-07
   version: 8.4.10
 - engine: mysql
