@@ -4,11 +4,16 @@ from typing import Annotated
 import typer
 from rich.logging import RichHandler
 
-from .commands import msk_eol, rds_eol
+from .commands import elasticache_eol, msk_eol, rds_eol
 
 app = typer.Typer()
 app.add_typer(rds_eol.app, name="rds-eol", help="RDS End of Life related commands.")
 app.add_typer(msk_eol.app, name="msk-eol", help="MSK End of Life related commands.")
+app.add_typer(
+    elasticache_eol.app,
+    name="elasticache-eol",
+    help="ElastiCache End of Life related commands.",
+)
 
 
 @app.callback(no_args_is_help=True)

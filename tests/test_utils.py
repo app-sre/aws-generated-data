@@ -29,6 +29,9 @@ if TYPE_CHECKING:
         ("15 July 1979", dt(1979, 7, 15)),
         ("January 2021", dt(2021, 1, 31)),
         ("September 2021", dt(2021, 9, 30)),
+        ("1/10/2021", dt(2021, 1, 10)),
+        ("01/10/2021", dt(2021, 1, 10)),
+        ("12/31/2021", dt(2021, 12, 31)),
         pytest.param(
             "just an arbitry string",
             None,

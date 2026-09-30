@@ -28,6 +28,8 @@ ci-run: build-image
 		-e AGD_RDS_EOL_OUTPUT='/output/$(AGD_RDS_EOL_OUTPUT)' \
 		-e AGD_MSK_RELEASE_CALENDAR_URL='$(AGD_MSK_RELEASE_CALENDAR_URL)' \
 		-e AGD_MSK_EOL_OUTPUT='/output/$(AGD_MSK_EOL_OUTPUT)' \
+		-e AGD_ELASTICACHE_RELEASE_CALENDAR_URL='$(AGD_ELASTICACHE_RELEASE_CALENDAR_URL)' \
+		-e AGD_ELASTICACHE_EOL_OUTPUT='/output/$(AGD_ELASTICACHE_EOL_OUTPUT)' \
 		agd-test make run
 
 	# Commit changes if any
@@ -39,10 +41,13 @@ ci-run: build-image
 	fi
 
 .PHONY: run
-run: run-rds-eol run-msk-eol
+run: run-rds-eol run-msk-eol run-elasticache-eol
 
 run-rds-eol:
 	uv run agd rds-eol fetch
 
 run-msk-eol:
 	uv run agd msk-eol fetch
+
+run-elasticache-eol:
+	uv run agd elasticache-eol fetch

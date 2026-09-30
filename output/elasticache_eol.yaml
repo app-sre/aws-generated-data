@@ -1,0 +1,10 @@
+---
+- engine: redis
+  eol: 2027-01-31
+  version: '6'
+- engine: redis
+  eol: 2026-01-31
+  version: '5'
+- engine: redis
+  eol: 2026-01-31
+  version: '4'
