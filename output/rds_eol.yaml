@@ -516,7 +516,7 @@
   eol: 2024-11-15
   version: '14.3'
 - engine: aurora-postgresql
-  eol: 2028-02-28
+  eol: 2027-02-28
   version: '14.24'
 - engine: aurora-postgresql
   eol: 2027-02-28
