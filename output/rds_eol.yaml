@@ -303,6 +303,9 @@
   eol: 2024-02-29
   version: '11.22'
 - engine: mysql
+  eol: 2027-11-18
+  version: 9.7.4
+- engine: mysql
   eol: 2027-05-08
   version: 8.4.9
 - engine: mysql
